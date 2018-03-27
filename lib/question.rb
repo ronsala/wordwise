@@ -23,6 +23,8 @@ class Question
   #   puts "#{@current_player}, what is #{@word}?"
   # end
 
+  #testline
+
   def self.random_entry
     random_entry = Nokogiri::HTML(open("https://en.wiktionary.org/wiki/Special:RandomInCategory/English_lemmas#English"))
     @word = random_entry.css('#firstHeading').text
