@@ -1,5 +1,9 @@
 A quiz game for one or more players. Challenge your vocabulary by choosing the correct definition from a list.
 
+Icebox:
+
+Make word entry url accessible for more info.
+
 Interface:
 
 Welcome to Wordwise! Get ready to test your word wisdom!
@@ -16,7 +20,7 @@ What's the name of Player 2?
 
 [So on till all players are named.]
 
-#{Name}, what is #{word}?
+#{@current_player}, what is #{@word}?
 
 A) definition A
 B) definition B
