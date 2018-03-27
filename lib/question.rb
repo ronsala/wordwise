@@ -24,7 +24,7 @@ class Question
   end
 
   def self.random_entry
-    random_entry = Nokogiri::HTML(open("https://en.wiktionary.org/wiki/Special:Random"))
+    random_entry = Nokogiri::HTML(open("https://en.wiktionary.org/wiki/Special:RandomInCategory/English_lemmas#English"))
     @word = random_entry.css(id="firstHeading").text
     @lang = random_entry.css("h2 .mw-headline").text
     @fos = random_entry.css("h3 .mw-headline").text
@@ -33,11 +33,11 @@ class Question
 
   def self.english
     # binding.pry
-    if @lang == "English" 
-      @word = @lang
-    else
-      self.random_entry
-    end
+    # if @lang == "English" 
+    #   @word = @lang
+    # else
+    #   self.random_entry
+    # end
   end
 
   self.english
