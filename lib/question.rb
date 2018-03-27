@@ -12,7 +12,7 @@ require 'mechanize'
 
 class Question
 
-  attr_accessor :word, :a, :b, :c, :d, :fos, :definition
+  attr_accessor :word, :a, :b, :c, :d, :definition
 
   # def initialize(word, a, b, c, d)
   #   @word = word
@@ -29,7 +29,6 @@ class Question
     @definition = random_entry.css('#mw-content-text div ol li').text.split("\n")[0]
     binding.pry
   end
-
 
   self.random_entry
 
