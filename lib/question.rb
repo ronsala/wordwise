@@ -2,10 +2,7 @@ require 'open-uri'
 require 'pry'
 require 'nokogiri'
 
-test_url = "https://en.wiktionary.org/wiki/formosanos"
-
-
-class Word
+class Question
 
   attr_accessor :scraped_students
 
