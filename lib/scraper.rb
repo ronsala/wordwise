@@ -2,19 +2,26 @@ require 'open-uri'
 require 'pry'
 require 'nokogiri'
 
-rand_url = "https://en.wiktionary.org/wiki/Special:Random"
 test_url = "https://en.wiktionary.org/wiki/formosanos"
 
 
-class Scraper
+class Word
 
   attr_accessor :scraped_students
 
-  def self.rand_english
-    # rand = Nokogiri::HTML(open(rand_url))
-    test = Nokogiri::HTML(open("https://en.wiktionary.org/wiki/formosanos"))
-    lang = test.css(".mw-headline value")
+  def initialize
+
+  end
+
+  def random_lang
+    random_page = Nokogiri::HTML(open("https://en.wiktionary.org/wiki/Special:Random"))
+    lang = random_page.css("h2 .mw-headline").text
     binding.pry
+  end
+
+  def english?
+    random_lang
+    if lang == "English" word 
   end
 
   rand_english
