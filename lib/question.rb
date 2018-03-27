@@ -4,10 +4,14 @@ require 'nokogiri'
 
 class Question
 
-  attr_accessor :scraped_students
+  attr_accessor :word, :a, :b, :c, :d
 
-  def initialize
-
+  def initialize(word, a, b, c, d)
+    @word = word
+    @a = a
+    @b = b
+    @c = c
+    @d = d
   end
 
   def random_lang
