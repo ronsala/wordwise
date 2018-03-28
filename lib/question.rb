@@ -1,14 +1,9 @@
+# [] Test merging.
+
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
 require 'mechanize'
-
-# agent = Mechanize.new
-# page = agent.get('https://en.wiktionary.org/wiki/Special:RandomInCategory').search(id="ooui-php-1")
-# # search_form = page.form('f')
-# # search_form.q = 'ruby mechanize'
-# # page = agent.submit(google_form)
-# pp page
 
 class Question
 
@@ -22,8 +17,6 @@ class Question
   #   @d = d
   #   puts "#{@current_player}, what is #{@word}?"
   # end
-
-  #testline
 
   def self.random_entry
     random_entry = Nokogiri::HTML(open("https://en.wiktionary.org/wiki/Special:RandomInCategory/English_lemmas#English"))
