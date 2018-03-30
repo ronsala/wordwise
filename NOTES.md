@@ -4,7 +4,7 @@ A quiz game. Challenge your vocabulary by choosing the correct definition from a
 
 Welcome to Wordwise! Get ready to test your word wisdom!
 
-"What does #{@word} mean?"
+What does #{@word} mean?
 
 A) definition A
 B) definition B
@@ -15,11 +15,9 @@ D) definition D
 
 "Correct!" or "Incorrect!". Correct answer: #{fullEntry}"
 
-"To learn more **[]**
+"Type a word from the definition to define it, Enter for next question, or Q to quit."
 
-
-
-[Play goes until each player has had 10 questions and the leader is declared the winner. If no leader, "Name, Name, etc" (players tied for lead), your word wisdom is strong. Now entering Sudden Death Round! The first player, chosen at random, to answer correctly wins!. Random player asked question, etc.]
+On Q, user given percent of questions correct.
 
 Icebox:
 
