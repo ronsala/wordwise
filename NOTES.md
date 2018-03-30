@@ -1,10 +1,31 @@
-A quiz game for one or more players. Challenge your vocabulary by choosing the correct definition from a list.
+A quiz game. Challenge your vocabulary by choosing the correct definition from a list.
+
+**Basic Interface:**
+
+Welcome to Wordwise! Get ready to test your word wisdom!
+
+"What does #{@word} mean?"
+
+A) definition A
+B) definition B
+C) definition C
+D) definition D
+
+[User inputs guess.]
+
+"Correct!" or "Incorrect!". Correct answer: #{fullEntry}"
+
+"To learn more **[]**
+
+
+
+[Play goes until each player has had 10 questions and the leader is declared the winner. If no leader, "Name, Name, etc" (players tied for lead), your word wisdom is strong. Now entering Sudden Death Round! The first player, chosen at random, to answer correctly wins!. Random player asked question, etc.]
 
 Icebox:
 
 Make word entry url accessible for more info.
 
-Interface:
+**Potential Enhanced Interface:**
 
 Welcome to Wordwise! Get ready to test your word wisdom!
 
