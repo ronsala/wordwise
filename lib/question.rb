@@ -29,35 +29,37 @@ class Question
     words = doc.css('td a').to_a
     length = words.length
     rand_word_no = rand(0..length)
-    entry = random_entry_1.css('td a').to_a[rand_word_no]
+    entry = doc.css('td a').to_a[rand_word_no]
+    entry_url = entry(\".+\")
     word = entry.text
     # defin_1 = random_entry_1.css('#mw-content-text div ol li').text.split("\n")[0]
-    doc_2 = Nokogiri::HTML(open("entry"))
-    defin_1 = 
+    # doc_2 = Nokogiri::HTML(open("entry"))
+    # defin_1 = doc_2.css('.ind').text
 
 
     true_def = rand(1..4)
 
-    case true_def
-      when 1 
-        a = defin_1
-      when 2 
-        b = defin_1
-      when 3
-        c = defin_1
-      when 4 
-        d = defin_1
-        # binding.pry
-    end
+    # case true_def
+    #   when 1 
+    #     a = defin_1
+    #   when 2 
+    #     b = defin_1
+    #   when 3
+    #     c = defin_1
+    #   when 4 
+    #     d = defin_1
+    #     # binding.pry
+    # end
 
     # if a.nil? then a = defin_2 end
     # if b.nil? then b = defin_3 end
     # if c.nil? then c = defin_4 end
     # if d.nil? then d = defin_5 end
 
-    puts words
-    puts length
+    puts entry
+    puts entry_url
     puts word
+    # puts defin_1
     # puts a
     # puts b
     # puts c
