@@ -3,22 +3,22 @@
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
-require 'open_uri_redirections'
 
 class Question
 
   def initialize
     doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
-    words = doc.css('td a').to_a
+    words = doc.css('td a')
     length = words.length
-    rand_word_no = rand(0..length)
-    entry_url = doc.css('td a').to_a[rand_word_no].attribute('href').value
-    entry_url_split = entry_url.split(':').to_a
-    entry_url_s = entry_url_split.insert(1, 's:').join
-    doc_2 = Nokogiri::HTML(open(entry_url_s))
-    word = doc_2.css('.hw').text
-    definition = doc_2.css('.ind').first.text
-    origin = doc_2.css('.senseInnerWrapper p').text
+
+    rand_word_no_1 = rand(0..length)
+    entry_url_1 = doc.css('td a')[rand_word_no_1].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    doc_1 = Nokogiri::HTML(open(entry_url_1))
+    word_1 = doc_1.css('.hw').text
+    definition_1 = doc_1.css('.ind').first.text
+    origin_1 = doc_1.css('.senseInnerWrapper p').text
+
+
 
     true_def = rand(1..4)
 
@@ -39,8 +39,9 @@ class Question
     # if c.nil? then c = defin_4 end
     # if d.nil? then d = defin_5 end
 
-    puts word
-    puts definition
+    puts word_1
+    puts definition_1
+    puts origin_1
     # puts a
     # puts b
     # puts c
