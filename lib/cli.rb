@@ -10,9 +10,11 @@ class Wordwise::CLI
     end
 
     def introduction
-        puts ""
-        puts center("Welcome to WordWise. Get ready to test your word wisdom!")
-        puts ""
+        puts ''
+        puts center("Welcome to WordWise!")
+        puts ''
+        puts center("Get ready to test your word wisdom....")
+        puts ''
     end
 
     def questions
