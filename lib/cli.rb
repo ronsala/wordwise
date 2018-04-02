@@ -3,6 +3,12 @@ class Wordwise::CLI
     WIDTH = 70
     EXIT = ["exit", "quit"]
 
+    def call
+        introduction
+        questions
+        goodbye
+    end
+
     def introduction
         puts ""
         puts center("Welcome to WordWise. Get ready to test your word wisdom!")
@@ -10,7 +16,7 @@ class Wordwise::CLI
     end
 
     def questions
-        test_q = Question.new
+        question = Question.new
         puts "What does '#{word_1}' mean?"
         puts ""
         puts "1) #{definitions[0]}"

@@ -1,10 +1,4 @@
-# [] Test merging.
-
-require 'open-uri'
-require 'pry'
-require 'nokogiri'
-
-class Question
+class Wordwise::Question
 
   def initialize
     doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
