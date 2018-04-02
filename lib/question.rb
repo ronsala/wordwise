@@ -1,5 +1,7 @@
 class Wordwise::Question
 
+  attr_accessor :word_1, :definition_1, origin_1
+
   def initialize
     doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
     words = doc.css('td a')
@@ -8,9 +10,9 @@ class Wordwise::Question
     rand_word_no_1 = rand(0..length - 1)
     entry_url_1 = doc.css('td a')[rand_word_no_1].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_1 = Nokogiri::HTML(open(entry_url_1))
-    word_1 = doc_1.css('.hw').text
-    definition_1 = doc_1.css('.ind').first.text
-    origin_1 = doc_1.css('.senseInnerWrapper p').text
+    @word_1 = doc_1.css('.hw').text
+    @definition_1 = doc_1.css('.ind').first.text
+    @origin_1 = doc_1.css('.senseInnerWrapper p').text
 
     rand_word_no_2 = rand(0..length - 1)
     entry_url_2 = doc.css('td a')[rand_word_no_2].attribute('href').value.split(':').to_a.insert(1, 's:').join
@@ -33,6 +35,16 @@ class Wordwise::Question
     definition_4 = doc_4.css('.ind').first.text
     origin_4 = doc_4.css('.senseInnerWrapper p').text
 
-    definitions = [definition_1, definition_2, definition_3, definition_4].shuffle
+    definition = definition_1
+    definitions_s = [definition_1, definition_2, definition_3, definition_4].shuffle
+
+    puts "What does '#{word_1}' mean?"
+    puts ""
+    puts "1) #{definitions[0]}"
+    puts "2) #{definitions[1]}"
+    puts "3) #{definitions[2]}"
+    puts "4) #{definitions[3]}"
+    puts ""
+    puts 'Please enter a number 1-4.'
   end
 end
