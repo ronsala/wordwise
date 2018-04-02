@@ -1,4 +1,5 @@
-class Wordwise::CLI
+# class Wordwise::CLI
+class CLI
 
     WIDTH = 70
     EXIT = ["exit", "quit"]
@@ -11,27 +12,36 @@ class Wordwise::CLI
 
     def introduction
         puts ''
-        puts center("Welcome to WordWise!")
+        puts center("**Welcome to WordWise!**")
         puts ''
         puts center("Get ready to test your word wisdom....")
         puts ''
+        puts "*You can learn more about the words in this quiz at oxforddictionaries.com*"
     end
 
     def questions
         question = Wordwise::Question.new
         input = gets.strip.downcase
         case input
-            when '1' and definitions[0] == definition_1
+        when '1' 
+            if definitions[0] == definition_1
                 puts 'Correct!'
-            when '2' and definitions[1] == definition_1
+            end
+        when '2' 
+            if definitions[1] == definition_1
                 puts 'Correct!'
-            when '3' and definitions[2] == definition_1
+            end
+        when '3' 
+            if definitions[2] == definition_1
                 puts 'Correct!'
-            when '4' and definitions[3] == definition_1
+            end
+        when '4' 
+            if definitions[3] == definition_1
                 puts 'Correct!'
-            else puts 'Incorrect. \n Correct answer: #{definition_1'}
+            end
+        else puts 'Incorrect.'
         end
-        if input == ''
     end
-
 end
+
+cli = CLI.new

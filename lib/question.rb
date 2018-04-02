@@ -1,6 +1,11 @@
-class Wordwise::Question
+# class Wordwise::Question
+require 'open-uri'
+require 'pry'
+require 'nokogiri'
 
-  attr_accessor :word_1, :definition_1, origin_1
+class Question
+
+  attr_accessor :word_1, :definition_1, :origin_1
 
   def initialize
     doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
@@ -36,15 +41,18 @@ class Wordwise::Question
     origin_4 = doc_4.css('.senseInnerWrapper p').text
 
     definition = definition_1
-    definitions_s = [definition_1, definition_2, definition_3, definition_4].shuffle
+    definitions = [definition_1, definition_2, definition_3, definition_4]
+    definitions_s = definitions.shuffle
 
     puts "What does '#{word_1}' mean?"
     puts ""
-    puts "1) #{definitions[0]}"
-    puts "2) #{definitions[1]}"
-    puts "3) #{definitions[2]}"
-    puts "4) #{definitions[3]}"
+    puts "1) #{definitions_s[0]}"
+    puts "2) #{definitions_s[1]}"
+    puts "3) #{definitions_s[2]}"
+    puts "4) #{definitions_s[3]}"
     puts ""
     puts 'Please enter a number 1-4.'
   end
 end
+
+tq = Question.new
