@@ -39,46 +39,6 @@ class Question
     definition_4 = doc_4.css('.ind').first.text
     origin_4 = doc_4.css('.senseInnerWrapper p').text
 
-    definitions = [definition_1, definition_2, ]
-
-
-    true_def = rand(1..4)
-
-    # case true_def
-    #   when 1 
-    #     a = defin_1
-    #   when 2 
-    #     b = defin_1
-    #   when 3
-    #     c = defin_1
-    #   when 4 
-    #     d = defin_1
-    #     # binding.pry
-    # end
-
-    # if a.nil? then a = defin_2 end
-    # if b.nil? then b = defin_3 end
-    # if c.nil? then c = defin_4 end
-    # if d.nil? then d = defin_5 end
-
-    puts word_1
-    puts definition_1
-    puts origin_1
-    puts word_2
-    puts definition_2
-    puts origin_2
-    puts word_3
-    puts definition_3
-    puts origin_3
-    puts word_4
-    puts definition_4
-    puts origin_4
-    # puts a
-    # puts b
-    # puts c
-    # puts d
-
+    definitions = [definition_1, definition_2, definition_3, definition_4].shuffle
   end
 end
-
-test_q = Question.new
