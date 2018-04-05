@@ -55,48 +55,54 @@ class CLI
         input = gets.strip
         case input
         when "1"
-            if definitions_s[0] == definition
-                puts 'Correct!'
-
-            else 
-                puts 'Incorrect.'
-            end
+          if @definitions_s[0] == @definition
+            puts 'Correct!'
+            origin_or_next
+          else 
+            puts "Incorrect. Correct answer: #{@definition}"
+            origin_or_next
+          end
         when "2" 
-            if definitions_s[1] == definition
-                puts 'Correct!'
-            else 
-                puts 'Incorrect.'
-            end
+          if @definitions_s[1] == @definition
+            puts 'Correct!'
+            origin_or_next
+          else 
+            puts "Incorrect. Correct answer: #{@definition}"
+            origin_or_next
+          end
         when "3" 
-            if definitions_s[2] == definition
-                puts 'Correct!'
-            else 
-                puts 'Incorrect.'
-            end
+          if @definitions_s[2] == @definition
+            puts 'Correct!'
+            origin_or_next
+          else 
+            puts "Incorrect. Correct answer: #{@definition}"
+            origin_or_next
+          end
         when "4" 
-            if definitions_s[3] == definition
-                puts 'Correct!'
-            else 
-                puts 'Incorrect.'
-            end
+          if @definitions_s[3] == @definition
+            puts 'Correct!'
+            origin_or_next
+          else 
+            puts "Incorrect. Correct answer: #{@definition}"
+            origin_or_next
+          end
         else 
-            ask_input
+          ask_input
         end
+      end
       
-        def origin_or_next
-          puts "For word origin, enter 'o'. For next question, enter 'n'"
-                input = gets.strip
-                case input
-                when "o"
-                  puts @origin_1
-                when "n"
-                  play
-                else 
-                  puts "Please enter 'o' or 'n'."
-                end
+      def origin_or_next
+        puts "For word origin, enter 'o'. For next question, enter 'n'"
+        input = gets.strip
+        case input
+        when "o"
+          puts "\n#{@origin_1} \n\n"
+        when "n"
+          play
+        else 
+          puts "Please enter 'o' or 'n'."
         end
-        
-
+      end
 end
 
 cli = CLI.new.call
