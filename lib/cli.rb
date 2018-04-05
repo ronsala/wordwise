@@ -2,13 +2,15 @@ require_relative "../lib/question.rb"
 
 class CLI
 
-    # attr_accessor :definitions
+    attr_accessor :definition, :question, :definitions_s, :word_1
 
     WIDTH = 70
 
     def call
         introduction
-        questions
+        setup_question
+        display_question
+        ask_input
         # goodbye
     end
 
@@ -16,6 +18,9 @@ class CLI
         puts center("WELCOME TO WORDWISE!")
         puts center("You can learn more about the words in this quiz at https://www.oxforddictionaries.com.")
         puts center("Get ready to test your word wisdom....")
+    end
+
+    def play
     end
 
     def center(str)
@@ -27,11 +32,24 @@ class CLI
         str.prepend("\n")
       end
 
-    def questions
+      def setup_question
         question = Question.new
-        definition = question.definition_1
-        definitions_s = question.definitions_s
-        # definition = question.definition
+        @definition = question.definition_1
+        @definitions_s = question.definitions_s
+        @word_1 = question.word_1
+      end
+
+      def display_question
+        puts ''
+        puts "What does '#{@word_1}' mean?\n\n"
+        puts "1) #{@definitions_s[0]}"
+        puts "2) #{@definitions_s[1]}"
+        puts "3) #{@definitions_s[2]}"
+        puts "4) #{@definitions_s[3]}\n"
+      end
+
+      def ask_input
+        puts 'Please enter a number 1-4.'
         input = gets.strip
         case input
         when "1"
@@ -59,10 +77,10 @@ class CLI
                 puts 'Incorrect.'
             end
         else 
-            puts 'Please enter a number 1-4.'
+            ask_input
         end
-                # binding.pry
-    end
+      end
+
 end
 
 cli = CLI.new.call
