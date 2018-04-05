@@ -11,7 +11,6 @@ class CLI
     def call
         introduction
         play
-        # goodbye
     end
 
     def introduction
@@ -52,7 +51,7 @@ class CLI
       end
 
       def ask_input
-        puts 'Please enter a number 1-4.'
+        puts "Please enter a number 1-4.\n\n"
         input = gets.strip
         case input
         when "1"
@@ -102,7 +101,7 @@ class CLI
           else
             puts "Sorry, no origin available for this word."
           end
-          sleep(5)
+          sleep(2)
           play
         when "n"
           play

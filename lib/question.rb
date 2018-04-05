@@ -1,4 +1,4 @@
-# [] solve for broken link for "Argus-eyed", etc.
+# [] solve for broken and absent links (for "Argus-eyed", etc.)
 
 require 'open-uri'
 require 'pry'
@@ -16,8 +16,11 @@ class Question
     @length = words.length
     randomize
 
+     # Parses the individual words' web pages:
+
     entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
-    doc_1 = Nokogiri::HTML(open(entry_url_1))
+    # doc_1 = Nokogiri::HTML(open(entry_url_1))
+    doc_1 = Nokogiri::HTML(open("https://en.oxforddictionaries.com/definition/suedehead"))
     @word_1 = doc_1.css('.hw').text.match(/^[a-zA-Z]+/)
     @definition_1 = doc_1.css('.ind').first.text
     @origin_1 = doc_1.css('.senseInnerWrapper p').text
@@ -40,9 +43,13 @@ class Question
     @definition_4 = doc_4.css('.ind').first.text
     origin_4 = doc_4.css('.senseInnerWrapper p').text
 
+    # Attempting conditional to check for empty strings.
+
+    if [@word_1, @word_2, @word_3, @word_4].any {|word| word.nil? then initialize} || @definitions.any {|definition| definition.nil? then initialize}
+
     @definition = @definition_1
     @definitions = [@definition_1, @definition_2, @definition_3, @definition_4]
-    @definitions_s = @definitions.shuffle
+    @definitions_s = @definitions.shuffle 
   end
 
   def randomize
@@ -52,6 +59,7 @@ class Question
     end
     @word_nos
   end
+
 end
 
 # tq = Question.new
