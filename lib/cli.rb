@@ -9,7 +9,7 @@ class CLI
     def call
         introduction
         questions
-        goodbye
+        # goodbye
     end
 
     def introduction
@@ -29,27 +29,39 @@ class CLI
 
     def questions
         question = Question.new
-        definition = question.display_question
-        input = gets.strip.downcase
+        definition = question.definition_1
+        definitions_s = question.definitions_s
+        # definition = question.definition
+        input = gets.strip
         case input
-        when '1' 
-            if @definitions[0] == definition
+        when "1"
+            if definitions_s[0] == definition
                 puts 'Correct!'
+            else 
+                puts 'Incorrect.'
             end
-        when '2' 
-            if @definitions[1] == definition
+        when "2" 
+            if definitions_s[1] == definition
                 puts 'Correct!'
+            else 
+                puts 'Incorrect.'
             end
-        when '3' 
-            if @definitions[2] == definition
+        when "3" 
+            if definitions_s[2] == definition
                 puts 'Correct!'
+            else 
+                puts 'Incorrect.'
             end
-        when '4' 
-            if @definitions[3] == definition
+        when "4" 
+            if definitions_s[3] == definition
                 puts 'Correct!'
+            else 
+                puts 'Incorrect.'
             end
-        else puts 'Incorrect.'
+        else 
+            puts 'Please enter a number 1-4.'
         end
+                # binding.pry
     end
 end
 

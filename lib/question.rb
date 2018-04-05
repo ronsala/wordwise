@@ -1,11 +1,11 @@
-# class Wordwise::Question
+# [] prevent dups in @definions
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
 
 class Question
 
-  attr_accessor :word_1, :definition_1, :definitions
+  attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s
 
   def initialize
     doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
@@ -39,9 +39,7 @@ class Question
     word_4 = doc_4.css('.hw').text
     @definition_4 = doc_4.css('.ind').first.text
     origin_4 = doc_4.css('.senseInnerWrapper p').text
-  end
 
-  def display_question
     @definition = @definition_1
     @definitions = [@definition_1, @definition_2, @definition_3, @definition_4]
     @definitions_s = @definitions.shuffle
