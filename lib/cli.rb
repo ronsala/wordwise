@@ -42,12 +42,11 @@ class CLI
       end
 
       def display_question
-        puts ''
-        puts "What does '#{@word_1}' mean?\n\n"
-        puts "1) #{@definitions_s[0]}"
-        puts "2) #{@definitions_s[1]}"
-        puts "3) #{@definitions_s[2]}"
-        puts "4) #{@definitions_s[3]}\n"
+        puts "\nWhat does '#{@word_1}' mean?\n\n"
+        puts "1) #{@definitions_s[0]}\n\n"
+        puts "2) #{@definitions_s[1]}\n\n"
+        puts "3) #{@definitions_s[2]}\n\n"
+        puts "4) #{@definitions_s[3]}\n\n"
       end
 
       def ask_input
@@ -57,41 +56,41 @@ class CLI
         when "1"
           if @definitions_s[0] == @definition
             puts 'Correct!'
-            origin_or_next
+            menu
           else 
             puts "Incorrect. Correct answer: '#{@definition}'"
-            origin_or_next
+            menu
           end
         when "2" 
           if @definitions_s[1] == @definition
             puts 'Correct!'
-            origin_or_next
+            menu
           else 
             puts "Incorrect. Correct answer: '#{@definition}'"
-            origin_or_next
+            menu
           end
         when "3" 
           if @definitions_s[2] == @definition
             puts 'Correct!'
-            origin_or_next
+            menu
           else 
             puts "Incorrect. Correct answer: '#{@definition}'"
-            origin_or_next
+            menu
           end
         when "4" 
           if @definitions_s[3] == @definition
             puts 'Correct!'
-            origin_or_next
+            menu
           else 
             puts "Incorrect. Correct answer: '#{@definition}''"
-            origin_or_next
+            menu
           end
         else 
           ask_input
         end
       end
       
-      def origin_or_next
+      def menu
         puts "For word origin, enter 'o'. For next question, enter 'n'"
         input = gets.strip
         case input
