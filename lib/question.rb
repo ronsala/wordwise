@@ -14,7 +14,6 @@ class Question
     words = doc.css('td a')
     @length = words.length
     randomize
-    word_no_1, word_no_2, word_no_3, word_no_4 = @word_nos[0], @word_nos[1], @word_nos[2], @word_nos[3]
 
     entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_1 = Nokogiri::HTML(open(entry_url_1))
@@ -22,23 +21,19 @@ class Question
     @definition_1 = doc_1.css('.ind').first.text
     @origin_1 = doc_1.css('.senseInnerWrapper p').text
 
-    entry_url_2 = doc.css('td a')[@word_no_2].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    entry_url_2 = doc.css('td a')[@word_nos[1]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_2 = Nokogiri::HTML(open(entry_url_2))
     word_2 = doc_2.css('.hw').text
     @definition_2 = doc_2.css('.ind').first.text
     origin_2 = doc_2.css('.senseInnerWrapper p').text
 
-    rand_word_no_3 = randomize
-    @word_nos.include?(rand_word_no_3) ? rand_word_no_2 = rand(0..length - 1) : @word_nos << rand_word_no_3
-    entry_url_3 = doc.css('td a')[rand_word_no_3].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    entry_url_3 = doc.css('td a')[@word_nos[2]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_3 = Nokogiri::HTML(open(entry_url_3))
     word_3 = doc_3.css('.hw').text
     @definition_3 = doc_3.css('.ind').first.text
     origin_3 = doc_3.css('.senseInnerWrapper p').text
 
-    rand_word_no_4 = randomize
-    @word_nos.include?(rand_word_no_4) ? rand_word_no_2 = rand(0..length - 1) : @word_nos << rand_word_no_4
-    entry_url_4 = doc.css('td a')[rand_word_no_4].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    entry_url_4 = doc.css('td a')[@word_nos[3]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_4 = Nokogiri::HTML(open(entry_url_4))
     word_4 = doc_4.css('.hw').text
     @definition_4 = doc_4.css('.ind').first.text
@@ -58,4 +53,4 @@ class Question
   end
 end
 
-tq = Question.new
+# tq = Question.new
