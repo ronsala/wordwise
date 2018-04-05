@@ -1,4 +1,5 @@
-# class Wordwise::CLI
+require_relative "../lib/question.rb"
+
 class CLI
 
     WIDTH = 70
@@ -12,7 +13,7 @@ class CLI
     def introduction
         puts center("WELCOME TO WORDWISE!\n")
         puts center("Get ready to test your word wisdom....\n\n\n")
-        puts "You can learn more about the words in this quiz at oxforddictionaries.com\n\n"
+        puts center("You can learn more about the words in this quiz at https://www.oxforddictionaries.com\n\n")
     end
 
     def center(str)
@@ -25,7 +26,7 @@ class CLI
       end
 
     def questions
-        # question = Question.new
+        question = Question.new
         input = gets.strip.downcase
         case input
         when '1' 

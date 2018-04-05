@@ -15,9 +15,9 @@ class Question
     rand_word_no_1 = rand(0..length - 1)
     entry_url_1 = doc.css('td a')[rand_word_no_1].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_1 = Nokogiri::HTML(open(entry_url_1))
-    @word_1 = doc_1.css('.hw').text
-    @definition_1 = doc_1.css('.ind').first.text
-    @origin_1 = doc_1.css('.senseInnerWrapper p').text
+    word_1 = doc_1.css('.hw').text
+    definition_1 = doc_1.css('.ind').first.text
+    origin_1 = doc_1.css('.senseInnerWrapper p').text
 
     rand_word_no_2 = rand(0..length - 1)
     entry_url_2 = doc.css('td a')[rand_word_no_2].attribute('href').value.split(':').to_a.insert(1, 's:').join
