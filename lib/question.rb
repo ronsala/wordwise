@@ -1,4 +1,5 @@
-# [] prevent dups in @definions
+# [] solve for broken link for "Argus-eyed", etc.
+
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
@@ -17,25 +18,25 @@ class Question
 
     entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_1 = Nokogiri::HTML(open(entry_url_1))
-    @word_1 = doc_1.css('.hw').text
+    @word_1 = doc_1.css('.hw').text.match(/^[a-zA-Z]+/)
     @definition_1 = doc_1.css('.ind').first.text
     @origin_1 = doc_1.css('.senseInnerWrapper p').text
 
     entry_url_2 = doc.css('td a')[@word_nos[1]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_2 = Nokogiri::HTML(open(entry_url_2))
-    word_2 = doc_2.css('.hw').text
+    word_2 = doc_2.css('.hw').text.match(/^[a-zA-Z]+/)
     @definition_2 = doc_2.css('.ind').first.text
     origin_2 = doc_2.css('.senseInnerWrapper p').text
 
     entry_url_3 = doc.css('td a')[@word_nos[2]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_3 = Nokogiri::HTML(open(entry_url_3))
-    word_3 = doc_3.css('.hw').text
+    word_3 = doc_3.css('.hw').text.match(/^[a-zA-Z]+/)
     @definition_3 = doc_3.css('.ind').first.text
     origin_3 = doc_3.css('.senseInnerWrapper p').text
 
     entry_url_4 = doc.css('td a')[@word_nos[3]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc_4 = Nokogiri::HTML(open(entry_url_4))
-    word_4 = doc_4.css('.hw').text
+    word_4 = doc_4.css('.hw').text.match(/^[a-zA-Z]+/)
     @definition_4 = doc_4.css('.ind').first.text
     origin_4 = doc_4.css('.senseInnerWrapper p').text
 

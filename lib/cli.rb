@@ -96,6 +96,7 @@ class CLI
         case input
         when "o"
           puts "\n#{@origin_1} \n\n"
+          play
         when "n"
           play
         else 
