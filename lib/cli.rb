@@ -19,8 +19,17 @@ class CLI
         puts "*You can learn more about the words in this quiz at oxforddictionaries.com*"
     end
 
+    def center(str)
+        s = " "
+        until str.length >= WIDTH
+          str.prepend(s)
+          str << (s)
+        end
+        str.prepend("\n")
+      end
+
     def questions
-        question = Wordwise::Question.new
+        # question = Question.new
         input = gets.strip.downcase
         case input
         when '1' 
@@ -44,4 +53,4 @@ class CLI
     end
 end
 
-cli = CLI.new
+cli = CLI.new.call

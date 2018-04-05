@@ -44,15 +44,16 @@ class Question
     definitions = [definition_1, definition_2, definition_3, definition_4]
     definitions_s = definitions.shuffle
 
+    puts ''
     puts "What does '#{word_1}' mean?"
-    puts ""
+    puts ''
     puts "1) #{definitions_s[0]}"
     puts "2) #{definitions_s[1]}"
     puts "3) #{definitions_s[2]}"
     puts "4) #{definitions_s[3]}"
-    puts ""
+    puts ''
     puts 'Please enter a number 1-4.'
   end
 end
 
-tq = Question.new
+# tq = Question.new
