@@ -1,3 +1,5 @@
+# [] Fix problem of word origin sometimes not putsing or giving backup text.
+
 require_relative "../lib/question.rb"
 
 class CLI
@@ -55,10 +57,10 @@ class CLI
         case input
         when "1"
           if @definitions_s[0] == @definition
-            puts 'Correct!'
+            puts "\nCorrect!"
             menu
           else 
-            puts "Incorrect. Correct answer: '#{@definition}'"
+            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
             menu
           end
         when "2" 
@@ -66,7 +68,7 @@ class CLI
             puts 'Correct!'
             menu
           else 
-            puts "Incorrect. Correct answer: '#{@definition}'"
+            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
             menu
           end
         when "3" 
@@ -74,7 +76,7 @@ class CLI
             puts 'Correct!'
             menu
           else 
-            puts "Incorrect. Correct answer: '#{@definition}'"
+            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
             menu
           end
         when "4" 
@@ -82,7 +84,7 @@ class CLI
             puts 'Correct!'
             menu
           else 
-            puts "Incorrect. Correct answer: '#{@definition}'\n\n"
+            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
             menu
           end
         else 
@@ -91,24 +93,28 @@ class CLI
       end
       
       def menu
-        puts "Word origin: 'o'. Next question: 'n'. Exit game: 'e'"
+        puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
         input = gets.strip.downcase
         case input
         when "o"
-          puts "\n#{@origin_1} \n\n"
-          sleep(1)
+          if @origin1 != ""
+            puts "\n#{@origin_1} \n\n"
+          else
+            puts "Sorry, no origin available for this word."
+          end
+          sleep(5)
           play
         when "n"
           play
         when "e"
           goodbye
         else 
-          puts "Please enter 'o' or 'n'."
+          puts "Please enter 'o', 'n', or 'e'."
         end
       end
 
       def goodbye
-
+        puts "Thanks for playing WordWise! Please come again!"
       end
 end
 
