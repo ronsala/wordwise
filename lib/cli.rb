@@ -82,7 +82,7 @@ class CLI
             puts 'Correct!'
             menu
           else 
-            puts "Incorrect. Correct answer: '#{@definition}''"
+            puts "Incorrect. Correct answer: '#{@definition}'\n\n"
             menu
           end
         else 
@@ -91,17 +91,24 @@ class CLI
       end
       
       def menu
-        puts "For word origin, enter 'o'. For next question, enter 'n'"
-        input = gets.strip
+        puts "Word origin: 'o'. Next question: 'n'. Exit game: 'e'"
+        input = gets.strip.downcase
         case input
         when "o"
           puts "\n#{@origin_1} \n\n"
+          sleep(1)
           play
         when "n"
           play
+        when "e"
+          goodbye
         else 
           puts "Please enter 'o' or 'n'."
         end
+      end
+
+      def goodbye
+
       end
 end
 
