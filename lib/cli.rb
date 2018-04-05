@@ -2,15 +2,13 @@ require_relative "../lib/question.rb"
 
 class CLI
 
-    attr_accessor :definition, :question, :definitions_s, :word_1
+    attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
 
     WIDTH = 70
 
     def call
         introduction
-        setup_question
-        display_question
-        ask_input
+        play
         # goodbye
     end
 
@@ -21,6 +19,9 @@ class CLI
     end
 
     def play
+        setup_question
+        display_question
+        ask_input
     end
 
     def center(str)
@@ -37,6 +38,7 @@ class CLI
         @definition = question.definition_1
         @definitions_s = question.definitions_s
         @word_1 = question.word_1
+        @origin_1 = question.origin_1
       end
 
       def display_question
@@ -55,6 +57,7 @@ class CLI
         when "1"
             if definitions_s[0] == definition
                 puts 'Correct!'
+
             else 
                 puts 'Incorrect.'
             end
@@ -79,7 +82,20 @@ class CLI
         else 
             ask_input
         end
-      end
+      
+        def origin_or_next
+          puts "For word origin, enter 'o'. For next question, enter 'n'"
+                input = gets.strip
+                case input
+                when "o"
+                  puts @origin_1
+                when "n"
+                  play
+                else 
+                  puts "Please enter 'o' or 'n'."
+                end
+        end
+        
 
 end
 

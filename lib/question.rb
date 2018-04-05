@@ -5,7 +5,7 @@ require 'nokogiri'
 
 class Question
 
-  attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s
+  attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s, :origin_1
 
   def initialize
     doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
@@ -17,7 +17,7 @@ class Question
     doc_1 = Nokogiri::HTML(open(entry_url_1))
     @word_1 = doc_1.css('.hw').text
     @definition_1 = doc_1.css('.ind').first.text
-    origin_1 = doc_1.css('.senseInnerWrapper p').text
+    @origin_1 = doc_1.css('.senseInnerWrapper p').text
 
     rand_word_no_2 = rand(0..length - 1)
     entry_url_2 = doc.css('td a')[rand_word_no_2].attribute('href').value.split(':').to_a.insert(1, 's:').join
