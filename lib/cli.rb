@@ -8,7 +8,7 @@ class CLI
 
     def call
         introduction
-        play
+        # play
         # goodbye
     end
 
@@ -20,8 +20,8 @@ class CLI
 
     def play
         setup_question
-        display_question
-        ask_input
+        # display_question
+        # ask_input
     end
 
     def center(str)
@@ -41,13 +41,13 @@ class CLI
         @origin_1 = question.origin_1
       end
 
-      def display_question
-        puts "\nWhat does '#{@word_1}' mean?\n\n"
-        puts "1) #{@definitions_s[0]}\n\n"
-        puts "2) #{@definitions_s[1]}\n\n"
-        puts "3) #{@definitions_s[2]}\n\n"
-        puts "4) #{@definitions_s[3]}\n\n"
-      end
+      # def display_question
+      #   puts "\nWhat does '#{@word_1}' mean?\n\n"
+      #   puts "1) #{@definitions_s[0]}\n\n"
+      #   puts "2) #{@definitions_s[1]}\n\n"
+      #   puts "3) #{@definitions_s[2]}\n\n"
+      #   puts "4) #{@definitions_s[3]}\n\n"
+      # end
 
       def ask_input
         puts 'Please enter a number 1-4.'
