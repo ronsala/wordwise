@@ -11,9 +11,10 @@ class CLI
     end
 
     def introduction
-        puts center("WELCOME TO WORDWISE!\n")
-        puts center("Get ready to test your word wisdom....\n\n\n")
-        puts center("You can learn more about the words in this quiz at https://www.oxforddictionaries.com\n\n")
+        puts center("WELCOME TO WORDWISE!")
+        puts center("Get ready to test your word wisdom....")
+        puts center("You can learn more about the words in this quiz at https://www.oxforddictionaries.com.")
+        puts center("One moment while we get your first question....\n")
     end
 
     def center(str)
