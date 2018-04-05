@@ -59,7 +59,7 @@ class CLI
             puts 'Correct!'
             origin_or_next
           else 
-            puts "Incorrect. Correct answer: #{@definition}"
+            puts "Incorrect. Correct answer: '#{@definition}'"
             origin_or_next
           end
         when "2" 
@@ -67,7 +67,7 @@ class CLI
             puts 'Correct!'
             origin_or_next
           else 
-            puts "Incorrect. Correct answer: #{@definition}"
+            puts "Incorrect. Correct answer: '#{@definition}'"
             origin_or_next
           end
         when "3" 
@@ -75,7 +75,7 @@ class CLI
             puts 'Correct!'
             origin_or_next
           else 
-            puts "Incorrect. Correct answer: #{@definition}"
+            puts "Incorrect. Correct answer: '#{@definition}'"
             origin_or_next
           end
         when "4" 
@@ -83,7 +83,7 @@ class CLI
             puts 'Correct!'
             origin_or_next
           else 
-            puts "Incorrect. Correct answer: #{@definition}"
+            puts "Incorrect. Correct answer: '#{@definition}''"
             origin_or_next
           end
         else 
