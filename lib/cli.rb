@@ -2,7 +2,6 @@
 class CLI
 
     WIDTH = 70
-    EXIT = ["exit", "quit"]
 
     def call
         introduction
@@ -11,12 +10,9 @@ class CLI
     end
 
     def introduction
-        puts ''
-        puts center("**Welcome to WordWise!**")
-        puts ''
-        puts center("Get ready to test your word wisdom....")
-        puts ''
-        puts "*You can learn more about the words in this quiz at oxforddictionaries.com*"
+        puts center("WELCOME TO WORDWISE!\n")
+        puts center("Get ready to test your word wisdom....\n\n\n")
+        puts "You can learn more about the words in this quiz at oxforddictionaries.com\n\n"
     end
 
     def center(str)
