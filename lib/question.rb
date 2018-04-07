@@ -7,7 +7,7 @@ require 'nokogiri'
 # class Wordwise::Question # [] Error: "uninitialized constant Wordwise"
 class Question
 
-  attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s, :length, :origin_1, :rand_word_no_2, :word_nos
+  attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s, :length, :origin_1, :word_nos
 
   def initialize
     @word_nos = []
@@ -19,8 +19,8 @@ class Question
      #Parses the individual words' web pages. The first will be the word in the question. The rest are used to generate false definitions.:
 
     entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
-    # doc_1 = Nokogiri::HTML(open(entry_url_1))
-    doc_1 = Nokogiri::HTML(open("https://en.oxforddictionaries.com/definition/suedehead")) #Temporary: Test for absent word origin.
+    doc_1 = Nokogiri::HTML(open(entry_url_1))
+    # doc_1 = Nokogiri::HTML(open("https://en.oxforddictionaries.com/definition/suedehead")) #Temporary: Test for absent word origin.
     @word_1 = doc_1.css('.hw').text.match(/^[a-zA-Z]+/)
     @definition_1 = doc_1.css('.ind').first.text
     @origin_1 = doc_1.css('.senseInnerWrapper p').text
@@ -45,7 +45,7 @@ class Question
 
     #Attempting conditional to check for empty strings.
 
-    # if [@word_1, @word_2, @word_3, @word_4].any {|word| word.nil? then initialize} || @definitions.any {|definition| definition.nil? then initialize}
+    # if [@word_1, @word_2, @word_3, @word_4].each {|word| word == "" then initialize} || @definitions.each {|definition| definition == "" then initialize}
 
     #Set instance variables for Question objects.
 

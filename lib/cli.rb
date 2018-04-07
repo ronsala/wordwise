@@ -60,7 +60,7 @@ class CLI
       # Get definition number from user:
 
       def ask_input
-        puts "Please enter a number 1-4.\n\n"
+        puts "Please enter a number 1-4:\n\n"
         input = gets.strip
         case input
         when "1"
@@ -68,7 +68,7 @@ class CLI
             puts "\nCORRECT!"
             menu
           else 
-            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
+            puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
             menu
           end
         when "2" 
@@ -76,7 +76,7 @@ class CLI
             puts 'CORRECT!'
             menu
           else 
-            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
+            puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
             menu
           end
         when "3" 
@@ -84,7 +84,7 @@ class CLI
             puts 'CORRECT!'
             menu
           else 
-            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
+            puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
             menu
           end
         when "4" 
@@ -92,7 +92,7 @@ class CLI
             puts 'CORRECT!'
             menu
           else 
-            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
+            puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
             menu
           end
         else 
@@ -100,25 +100,44 @@ class CLI
         end
       end
       
-      # Menu displayed after user has answered a question:
+      # Menu displayed after user has ANSWERed a question:
 
       def menu
         puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
         input = gets.strip.downcase
+
         case input
         when "o"
           if @origin1 != ""
-            puts "\n#{@origin_1} \n\n"
+            puts "\n#{@origin_1}\n\n"
           else
-            puts "Sorry, no origin available for this word."
+            puts "Sorry, no origin available for this word.\n\n"
           end
-          play
+          puts "Next question: 'n'. Exit game: 'e'\n"
+          input_2 = gets.strip.downcase
+          case input_2
+          when "n"
+            play
+          when "e"
+            goodbye
+          else
+            puts "Please enter 'n', or 'e'."
+            input_2 = gets.strip.downcase
+            case input_2
+            when "n"
+              play
+            when "e"
+              goodbye
+            else
+              puts "Please enter n', or 'e'."
+            end
+          end
         when "n"
           play
         when "e"
           goodbye
         else 
-          puts "Please enter 'o', 'n', or 'e'."
+          menu
         end
       end
 
