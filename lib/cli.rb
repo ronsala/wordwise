@@ -34,6 +34,8 @@ class CLI
         str.prepend("\n")
       end
 
+      # Create new Question object:
+
       def setup_question
         question = Question.new
         @definition = question.definition_1
@@ -42,6 +44,8 @@ class CLI
         @origin_1 = question.origin_1
       end
 
+      # Display the word and shuffled definitions.
+
       def display_question
         puts "\nWhat does '#{@word_1}' mean?\n\n"
         puts "1) #{@definitions_s[0]}\n\n"
@@ -49,6 +53,8 @@ class CLI
         puts "3) #{@definitions_s[2]}\n\n"
         puts "4) #{@definitions_s[3]}\n\n"
       end
+
+      # Get definition number from user:
 
       def ask_input
         puts "Please enter a number 1-4.\n\n"
@@ -91,6 +97,8 @@ class CLI
         end
       end
       
+      # Menu displayed after user has answered a question:
+
       def menu
         puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
         input = gets.strip.downcase
@@ -101,7 +109,6 @@ class CLI
           else
             puts "Sorry, no origin available for this word."
           end
-          sleep(2)
           play
         when "n"
           play
@@ -111,6 +118,8 @@ class CLI
           puts "Please enter 'o', 'n', or 'e'."
         end
       end
+
+      # Bid user farewell and end play.
 
       def goodbye
         puts "Thanks for playing WordWise! Please come again!"

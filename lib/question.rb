@@ -15,7 +15,7 @@ class Question
     @length = words.length
     randomize
 
-     #Parses the individual words' web pages:
+     #Parses the individual words' web pages. The first will be the word in the question. The rest are used to generate false definitions.:
 
     entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     # doc_1 = Nokogiri::HTML(open(entry_url_1))
