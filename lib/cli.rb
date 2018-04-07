@@ -1,5 +1,6 @@
 # [] Fix problem of word origin sometimes not putsing or giving backup text.
 # [] Create new CLI object from wordwise file
+# [] 
 
 require_relative "../lib/question.rb"
 
@@ -25,7 +26,7 @@ class CLI
     def play
         setup_question
         display_question
-        ask_input
+        ask_no
     end
 
     def center(str)
@@ -59,50 +60,50 @@ class CLI
 
       # Get definition number from user:
 
-      def ask_input
+      def ask_no
         puts "Please enter a number 1-4:\n\n"
         input = gets.strip
         case input
         when "1"
           if @definitions_s[0] == @definition
             puts "\nCORRECT!"
-            menu
+            ask_letter
           else 
             puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-            menu
+            ask_letter
           end
         when "2" 
           if @definitions_s[1] == @definition
             puts 'CORRECT!'
-            menu
+            ask_letter
           else 
             puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-            menu
+            ask_letter
           end
         when "3" 
           if @definitions_s[2] == @definition
             puts 'CORRECT!'
-            menu
+            ask_letter
           else 
             puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-            menu
+            ask_letter
           end
         when "4" 
           if @definitions_s[3] == @definition
             puts 'CORRECT!'
-            menu
+            ask_letter
           else 
             puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-            menu
+            ask_letter
           end
         else 
           ask_input
         end
       end
       
-      # Menu displayed after user has ANSWERed a question:
+      # Menu displayed after user has answered a question:
 
-      def menu
+      def ask_letter
         puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
         input = gets.strip.downcase
 
@@ -113,32 +114,28 @@ class CLI
           else
             puts "Sorry, no origin available for this word.\n\n"
           end
-          puts "Next question: 'n'. Exit game: 'e'\n"
-          input_2 = gets.strip.downcase
-          case input_2
-          when "n"
-            play
-          when "e"
-            goodbye
-          else
-            puts "Please enter 'n', or 'e'."
-            input_2 = gets.strip.downcase
-            case input_2
-            when "n"
-              play
-            when "e"
-              goodbye
-            else
-              puts "Please enter n', or 'e'."
-            end
-          end
+          ask_n_or_e
         when "n"
           play
         when "e"
           goodbye
         else 
-          menu
+          ask_letter
         end
+      end
+
+      def ask_n_or_e
+        puts "Next question: 'n'. Exit game: 'e'\n"
+          input = gets.strip.downcase
+          
+          case input
+          when "n"
+            play
+          when "e"
+            goodbye
+          else
+            ask_n_or_e
+          end
       end
 
       # Bid user farewell and end play.

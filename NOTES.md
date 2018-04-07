@@ -4,6 +4,7 @@ Ideas for expansion:
 
 -- 2/multi player mode
 -- Allowing user to chose among word lists
+-- Reverse mode (get a definition and choose the word)
 
 **Basic Interface:**
 

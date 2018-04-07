@@ -1,4 +1,5 @@
 # [] solve for broken and absent links (for "Argus-eyed", etc.)
+# [] test hyphenated words
 
 require 'open-uri'
 require 'pry'
