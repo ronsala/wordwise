@@ -4,6 +4,7 @@ require 'open-uri'
 require 'pry'
 require 'nokogiri'
 
+# class Wordwise::Question # [] Error: "uninitialized constant Wordwise"
 class Question
 
   attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s, :length, :origin_1, :rand_word_no_2, :word_nos
@@ -44,9 +45,9 @@ class Question
 
     #Attempting conditional to check for empty strings.
 
-    if [@word_1, @word_2, @word_3, @word_4].any {|word| word.nil? then initialize} || @definitions.any {|definition| definition.nil? then initialize}
+    # if [@word_1, @word_2, @word_3, @word_4].any {|word| word.nil? then initialize} || @definitions.any {|definition| definition.nil? then initialize}
 
-    #Set instance variables for questions.
+    #Set instance variables for Question objects.
 
     @definition = @definition_1
     @definitions = [@definition_1, @definition_2, @definition_3, @definition_4]

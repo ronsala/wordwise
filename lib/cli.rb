@@ -2,7 +2,9 @@
 
 require_relative "../lib/question.rb"
 
+# class Wordwise::CLI # Error: "uninitialized constant Wordwise"
 class CLI
+
 
     attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
 
