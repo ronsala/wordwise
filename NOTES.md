@@ -1,5 +1,10 @@
 A quiz game. Challenge your vocabulary by choosing the correct definition from a list.
 
+Ideas for expansion:
+
+-- 2/multi player mode
+-- Allowing user to chose among word lists
+
 **Basic Interface:**
 
 Welcome to Wordwise! Get ready to test your word wisdom!
