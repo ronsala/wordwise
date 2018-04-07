@@ -1,4 +1,5 @@
 # [] Fix problem of word origin sometimes not putsing or giving backup text.
+# [] Create new CLI object from wordwise file
 
 require_relative "../lib/question.rb"
 
@@ -64,34 +65,34 @@ class CLI
         case input
         when "1"
           if @definitions_s[0] == @definition
-            puts "\nCorrect!"
+            puts "\nCORRECT!"
             menu
           else 
-            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
+            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
             menu
           end
         when "2" 
           if @definitions_s[1] == @definition
-            puts 'Correct!'
+            puts 'CORRECT!'
             menu
           else 
-            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
+            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
             menu
           end
         when "3" 
           if @definitions_s[2] == @definition
-            puts 'Correct!'
+            puts 'CORRECT!'
             menu
           else 
-            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
+            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
             menu
           end
         when "4" 
           if @definitions_s[3] == @definition
-            puts 'Correct!'
+            puts 'CORRECT!'
             menu
           else 
-            puts "\nIncorrect. Correct answer: '#{@definition}'\n"
+            puts "\nINCORRECT. CORRECT answer: '#{@definition}'\n"
             menu
           end
         else 
