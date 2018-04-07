@@ -1,5 +1,7 @@
 # [] solve for broken and absent links (for "Argus-eyed", etc.)
 # [] test hyphenated words
+# [] try catch or rescue on exception
+# [] check order of require statement vs. example gem
 
 require 'open-uri'
 require 'pry'
