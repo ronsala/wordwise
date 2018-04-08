@@ -35,19 +35,16 @@ class Question
         doc_2 = Nokogiri::HTML(open(entry_url_2))
         word_2 = doc_2.css('.hw').text.match(/^[a-zA-Z]+/)
         @definition_2 = doc_2.css('.ind').first.text
-        origin_2 = doc_2.css('.senseInnerWrapper p').text
 
         entry_url_3 = doc.css('td a')[@word_nos[2]].attribute('href').value.split(':').to_a.insert(1, 's:').join
         doc_3 = Nokogiri::HTML(open(entry_url_3))
         word_3 = doc_3.css('.hw').text.match(/^[a-zA-Z]+/)
         @definition_3 = doc_3.css('.ind').first.text
-        origin_3 = doc_3.css('.senseInnerWrapper p').text
 
         entry_url_4 = doc.css('td a')[@word_nos[3]].attribute('href').value.split(':').to_a.insert(1, 's:').join
         doc_4 = Nokogiri::HTML(open(entry_url_4))
         word_4 = doc_4.css('.hw').text.match(/^[a-zA-Z]+/)
         @definition_4 = doc_4.css('.ind').first.text
-        origin_4 = doc_4.css('.senseInnerWrapper p').text
 
       rescue StandardError=>e
         puts "\tError: #{e}"
@@ -56,7 +53,11 @@ class Question
 
     #Attempting conditional to check for empty strings.
 
-    # if [@word_1, @word_2, @word_3, @word_4].each {|word| word == "" then initialize} || @definitions.each {|definition| definition == "" then initialize}
+    [@word_1, @word_2, @word_3, @word_4, @definition_1, @definition_2, @definition_3, @definition_4, @origin_1].each do |word| 
+      if word == "" 
+        initialize
+      end
+    end
 
     #Set instance variables for Question objects.
 
@@ -72,7 +73,6 @@ class Question
       rand_no = rand(0..@length - 1)
       @word_nos.include?(rand_no) ? randomize : @word_nos << rand_no
     end
-    @word_nos
   end
 
 end

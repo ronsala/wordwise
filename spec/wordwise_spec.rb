@@ -5,7 +5,7 @@ RSpec.describe Wordwise do
     expect(Wordwise::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
+  # it "reinitializes Question on StandardError" do
+  #   expect(false).to eq(true)
+  # end
 end
