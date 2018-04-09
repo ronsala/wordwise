@@ -6,6 +6,6 @@ RSpec::Core::RakeTask.new(:spec)
 
 task :default => :spec
 
-task :console do
+task :console do #Calling this throws 'rake aborted! LoadError: cannot load such file -- nokogiri'
   Pry.start
 end
