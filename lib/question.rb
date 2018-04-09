@@ -47,7 +47,6 @@ class Question
         @definition_4 = doc_4.css('.ind').first.text
 
       rescue StandardError=>e
-        puts "\tError: #{e}"
         initialize
       end
 
