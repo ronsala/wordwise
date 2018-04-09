@@ -6,7 +6,6 @@ gem 'rake'
 gem 'pry'
 gem 'require_all'
 gem 'nokogiri'
-gem 'open-uri'
 gem 'bundler'
 
 # Specify your gem's dependencies in wordwise.gemspec
