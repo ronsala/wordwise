@@ -1,10 +1,6 @@
-
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "wordwise/version"
-require 'open-uri'
-require 'pry'
-require 'nokogiri'
 
 Gem::Specification.new do |spec|
   spec.name          = "wordwise"
@@ -12,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["RonSala"]
   spec.email         = ["ron.sala@gmail.com"]
 
-  spec.summary       = %q{A quiz game for one or more players.}
-  spec.description   = %q{Challenge your vocabulary by choosing the correct definition from a list.}
+  spec.summary       = %q{A quiz game. Challenge your vocabulary!}
+  spec.description   = %q{Given a random word, choose the correct definition from a list. Option to see word origin.}
   spec.homepage      = "https://github.com/ronsala/wordwise"
   spec.license       = "MIT"
 
