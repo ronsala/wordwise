@@ -1,6 +1,5 @@
 class CLI
 
-
     attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
 
     WIDTH = 70
