@@ -1,10 +1,36 @@
-A quiz game for one or more players. Challenge your vocabulary by choosing the correct definition from a list.
+A quiz game. Challenge your vocabulary by choosing the correct definition from a list.
+
+Ideas for expansion:
+
+-- 2/multi player mode
+-- Allowing user to chose among word lists
+-- Reverse mode (get a definition and choose the word)
+-- Provide only definitions of same part of speech as word
+
+**Basic Interface:**
+
+Welcome to Wordwise! Get ready to test your word wisdom!
+
+What does #{@word} mean?
+
+A) definition A
+B) definition B
+C) definition C
+D) definition D
+
+[User inputs guess.]
+
+"Correct!" or "Incorrect!". Correct answer: #{fullEntry}"
+
+"Type a word from the definition to define it, Enter for next question, or Q to quit."
+
+On Q, user given percent of questions correct.
 
 Icebox:
 
 Make word entry url accessible for more info.
 
-Interface:
+**Potential Enhanced Interface:**
 
 Welcome to Wordwise! Get ready to test your word wisdom!
 
