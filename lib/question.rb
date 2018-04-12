@@ -1,13 +1,3 @@
-# [] solve for broken and absent links (for "Argus-eyed", etc.)
-# [] test hyphenated words
-# [] try catch or rescue on exception
-# [] check order of require statement vs. example gem
-
-# require 'open-uri'
-# require 'pry'
-# require 'nokogiri'
-
-# class Wordwise::Question # [] Error: "uninitialized constant Wordwise"
 class Question
 
   attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s, :length, :origin_1, :word_nos
@@ -75,5 +65,3 @@ class Question
   end
 
 end
-
-# tq = Question.new
