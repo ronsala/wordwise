@@ -2,7 +2,7 @@
 # [] Create new CLI object from wordwise file
 # [] 
 
-require_relative "../lib/question.rb"
+# require_relative "../lib/question.rb"
 
 # class Wordwise::CLI # Error: "uninitialized constant Wordwise"
 class CLI
@@ -145,4 +145,4 @@ class CLI
       end
 end
 
-cli = CLI.new.call
+# cli = CLI.new.call

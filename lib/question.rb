@@ -3,9 +3,9 @@
 # [] try catch or rescue on exception
 # [] check order of require statement vs. example gem
 
-require 'open-uri'
-require 'pry'
-require 'nokogiri'
+# require 'open-uri'
+# require 'pry'
+# require 'nokogiri'
 
 # class Wordwise::Question # [] Error: "uninitialized constant Wordwise"
 class Question
