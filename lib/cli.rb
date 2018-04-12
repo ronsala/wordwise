@@ -1,10 +1,3 @@
-# [] Fix problem of word origin sometimes not putsing or giving backup text.
-# [] Create new CLI object from wordwise file
-# [] 
-
-# require_relative "../lib/question.rb"
-
-# class Wordwise::CLI # Error: "uninitialized constant Wordwise"
 class CLI
 
 
@@ -144,5 +137,3 @@ class CLI
         puts "Thanks for playing WordWise! Please come again!"
       end
 end
-
-# cli = CLI.new.call

@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-# require "wordwise"
 require_relative '../config/environment'
 
-# Wordwise::CLI.new.call
 CLI.new.call
