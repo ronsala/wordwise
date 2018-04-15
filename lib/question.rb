@@ -1,10 +1,12 @@
+# 
+
 class Question
 
   attr_accessor :word_1, :definition_1, :definition_2, :definition_3, :definition_4, :definitions, :definitions_s, :length, :origin_1, :word_nos
 
   def initialize
 
-      begin
+      # begin
       
         @word_nos = []
         doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
@@ -12,7 +14,8 @@ class Question
         @length = words.length
         randomize
 
-        #Parses the individual words' web pages. The first will be the word in the question. The rest are used to generate false definitions.:
+        # Parses the individual words' web pages. The first will be the word in 
+        # the question. The rest are used to generate false definitions.:
 
         entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
         doc_1 = Nokogiri::HTML(open(entry_url_1))
@@ -36,11 +39,11 @@ class Question
         word_4 = doc_4.css('.hw').text.match(/^[a-zA-Z]+/)
         @definition_4 = doc_4.css('.ind').first.text
 
-      rescue StandardError=>e
-        initialize
-      end
+      # rescue StandardError => e
+      #   initialize
+      # end
 
-    #Attempting conditional to check for empty strings.
+    # Conditional to check for empty strings.
 
     [@word_1, @word_2, @word_3, @word_4, @definition_1, @definition_2, @definition_3, @definition_4, @origin_1].each do |word| 
       if word == "" 
@@ -48,14 +51,13 @@ class Question
       end
     end
 
-    #Set instance variables for Question objects.
+    # Set instance variables for Question objects.
 
     @definition = @definition_1
     @definitions = [@definition_1, @definition_2, @definition_3, @definition_4]
     @definitions_s = @definitions.shuffle 
-  end
 
-  #Return array of unique, pseudorandom index numbers to chose words from list on webpage.
+  # Return array of unique, pseudorandom index numbers to chose words from list on webpage.
 
   def randomize
     until @word_nos.length == 4
