@@ -63,5 +63,4 @@ class Question
       @word_nos.include?(rand_no) ? randomize : @word_nos << rand_no
     end
   end
-
-# tq = Question.new
+end
