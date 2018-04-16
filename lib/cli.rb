@@ -46,42 +46,47 @@ class Wordwise::CLI
   def ask_no
     puts "Please enter a number 1-4:\n\n"
     @num_input = gets.strip
-    case input
+    case @num_input
     when '1'
-      if @definitions_s[0] == @definition
-        puts "\nCORRECT!"
-        ask_letter
+      if @defs[0] == @def
+        correct
       else
-        puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-        ask_letter
+        incorrect
       end
     when '2'
-      if @definitions_s[1] == @definition
-        puts 'CORRECT!'
-        ask_letter
+      if @defs[1] == @def
+        correct
       else
-        puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-        ask_letter
+        incorrect
       end
     when '3'
-      if @definitions_s[2] == @definition
-        puts 'CORRECT!'
-        ask_letter
+      if @defs[2] == @def
+        correct
       else
-        puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-        ask_letter
+        incorrect
       end
     when '4'
-      if @definitions_s[3] == @definition
-        puts 'CORRECT!'
-        ask_letter
+      if @defs[3] == @def
+        correct
       else
-        puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@definition}'\n"
-        ask_letter
+        incorrect
       end
     else
       ask_input
     end
+  end
+
+  # Tell user they answered correctly and ask how they want to proceed.
+  def correct
+    puts 'CORRECT!'
+    ask_letter
+  end
+
+  # Tell user they answered incorrectly, give correct answer, and ask how they
+  # want to proceed.
+  def incorrect
+    puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@def}'\n"
+    ask_letter
   end
 
   # Menu displayed after user has answered a question:
