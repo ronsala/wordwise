@@ -11,10 +11,10 @@ class Wordwise::CLI
 
   # Display welcome message.
   def introduction
-    puts 'WELCOME TO WORDWISE!\n\n'.center
-    puts 'You can learn more about the words in this quiz at\n\n'.center
-    puts 'https://www.oxforddictionaries.com.\n\n'.center
-    puts 'Get ready to test your word wisdom....\n\n'.center
+    puts "WELCOME TO WORDWISE!\n\n".center(70)
+    puts "You can learn more about the words in this quiz at\n\n".center(70)
+    puts "https://www.oxforddictionaries.com.\n\n".center(70)
+    puts "Get ready to test your word wisdom....\n\n".center(70)
   end
 
   # Display question and ask for answer.
@@ -26,7 +26,7 @@ class Wordwise::CLI
 
   # Create new Question object.
   def setup_question
-    question = Question.new
+    question = Wordwise::Question.new
     @definition = question.definition_1
     @definitions_s = question.definitions_s
     @word_1 = question.word_1

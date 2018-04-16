@@ -44,9 +44,9 @@ class Wordwise::Scraper
     # word_4 = doc_4.css('.hw').text.match(/^[a-zA-Z]+/)
     # @definition_4 = doc_4.css('.ind').first.text
     entry_urls = []
-    @word_nos.each_index do |i|
-      entry_urls << doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
-    end
+    # @word_nos.each_index do |i|
+    #   entry_urls << doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    # end
   end
 
   # Check for empty strings.
@@ -55,5 +55,6 @@ class Wordwise::Scraper
       if word == "" 
         initialize
       end
+    end
   end
 end
