@@ -1,7 +1,7 @@
 # Implements interface for user.
 class Wordwise::CLI
   attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
-  attr_accessor :num_input
+  attr_accessor :num_input, :letter_input
 
   # Start the program.
   def call
@@ -89,19 +89,14 @@ class Wordwise::CLI
     ask_letter
   end
 
-  # Menu displayed after user has answered a question:
-
+  # Display menu after user has answered a question:
   def ask_letter
     puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
-    input = gets.strip.downcase
+    letter_input = gets.strip.downcase
 
-    case input
+    case letter_input
     when 'o'
-      if @origin1 != ''
-        puts "\n#{@origin_1}\n\n"
-      else
-        puts "Sorry, no origin available for this word.\n\n"
-      end
+      puts "\n#{@origin_1}\n\n"
       ask_n_or_e
     when 'n'
       play
