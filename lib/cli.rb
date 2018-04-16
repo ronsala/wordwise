@@ -1,6 +1,7 @@
 # Implements interface for user.
 class CLI
-  attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1, :num_input
+  attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
+  attr_accessor :num_input
 
   # Start the program.
   def call
@@ -10,9 +11,10 @@ class CLI
 
   # Display welcome message.
   def introduction
-    puts 'WELCOME TO WORDWISE!'.center
-    puts 'You can learn more about the words in this quiz at https://www.oxforddictionaries.com.'.center
-    puts 'Get ready to test your word wisdom....'.center
+    puts 'WELCOME TO WORDWISE!\n\n'.center
+    puts 'You can learn more about the words in this quiz at\n\n'.center
+    puts 'https://www.oxforddictionaries.com.\n\n'.center
+    puts 'Get ready to test your word wisdom....\n\n'.center
   end
 
   # Display question and ask for answer.
