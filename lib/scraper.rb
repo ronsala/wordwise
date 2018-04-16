@@ -1,6 +1,6 @@
 # Scrape web page containing word and the individual pages with their
 # definitions.
-class Scraper
+class Wordwise::Scraper
   attr_accessor :word_1, :definition_1, :definition_2, :definition_3
   attr_accessor :definition_4, :definitions, :definitions_s, :length, :origin_1
   attr_accessor :word_nos, :doc

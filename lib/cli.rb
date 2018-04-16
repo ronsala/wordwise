@@ -1,5 +1,5 @@
 # Implements interface for user.
-class CLI
+class Wordwise::CLI
   attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
   attr_accessor :num_input
 

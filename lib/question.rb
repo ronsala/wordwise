@@ -1,6 +1,6 @@
 # Assemble a question consisting of a word and its definition shuffled with 3
 # other definitions.
-class Question
+class Wordwise::Question
   attr_accessor :word_1, :definition_1, :definition_2, :definition_3
   attr_accessor :definition_4, :definitions, :length, :origin_1, :word_nos
 
