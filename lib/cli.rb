@@ -89,7 +89,7 @@ class Wordwise::CLI
     ask_letter
   end
 
-  # Display menu after user has answered a question:
+  # Display menu after user has answered a question.
   def ask_letter
     puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
     letter_input = gets.strip.downcase
@@ -107,6 +107,7 @@ class Wordwise::CLI
     end
   end
 
+  # Display menu after origin has been displayed.
   def ask_n_or_e
     puts "Next question: 'n'. Exit game: 'e'\n"
     input = gets.strip.downcase
@@ -122,7 +123,6 @@ class Wordwise::CLI
   end
 
   # Bid user farewell and end play.
-
   def goodbye
     puts 'Thanks for playing WordWise! Please come again!'
   end
