@@ -10,6 +10,10 @@ class Wordwise::CLI
     play
   end
 
+  def self.scraper
+    @scraper
+  end
+
   # Display welcome message.
   def introduction
     puts "WELCOME TO WORDWISE!\n\n".center(70)
