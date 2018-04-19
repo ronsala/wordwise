@@ -8,7 +8,7 @@ class Wordwise::Scraper
   # Scrape word list page.
   def initialize
     @word_nos = []
-    @doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
+    @doc = Nokogiri::HTML(open('https://en.oxforddictionaries.com/explore/weird-and-wonderful-words'))
     words = @doc.css('td a')
     @length = words.length
   end
@@ -53,7 +53,7 @@ class Wordwise::Scraper
   # Check for empty strings.
   def validate
     [@word1, @word2, @word3, @word4, @def1, @def2, @def3, @def4, @origin1].each do |word| 
-      if word == "" 
+      if word == ''
         initialize
       end
     end
