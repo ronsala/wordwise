@@ -11,7 +11,7 @@ class Wordwise::Scraper
     @words = @doc.css('td a')
     @length = words.length
     randomize
-    scrape_definitions
+    scrape_defs
     validate
   end
 
