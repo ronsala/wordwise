@@ -1,6 +1,6 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :definition, :definitions_s, :origin_1, :question, :word_1
+  attr_accessor :definition, :defs, :origin1, :question, :word1
   attr_accessor :num_input, :letter_input
 
   # Start the program.
@@ -29,8 +29,8 @@ class Wordwise::CLI
     question = Wordwise::Question.new
     @definition = question.definition_1
     @definitions_s = question.definitions_s
-    @word_1 = question.word_1
-    @origin_1 = question.origin_1
+    @word1 = question.word_1
+    @origin1 = question.origin_1
   end
 
   # Display the word and shuffled definitions.
@@ -93,10 +93,9 @@ class Wordwise::CLI
   def ask_letter
     puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
     letter_input = gets.strip.downcase
-
     case letter_input
     when 'o'
-      puts "\n#{@origin_1}\n\n"
+      puts "\n#{@origin1}\n\n"
       ask_n_or_e
     when 'n'
       play
