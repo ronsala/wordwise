@@ -2,7 +2,8 @@
 # definitions.
 # class Wordwise::Scraper
 class Wordwise::Scraper
-  attr_accessor :word_1, :def_1, :def_2, :def_3, :def_4, :defs, :length, :origin_1, :word_nos, :doc
+  attr_accessor :word1, :def1, :def2, :def3, :def4, :defs, :length
+  attr_accessor :origin1, :word_nos, :doc
 
   # Scrape word list page.
   def initialize
@@ -51,7 +52,7 @@ class Wordwise::Scraper
 
   # Check for empty strings.
   def validate
-    [@word_1, @word_2, @word_3, @word_4, @def_1, @def_2, @def_3, @def_4, @origin_1].each do |word| 
+    [@word1, @word2, @word3, @word4, @def1, @def2, @def3, @def4, @origin1].each do |word| 
       if word == "" 
         initialize
       end
