@@ -11,7 +11,7 @@ class Wordwise::Scraper
     @words = @doc.css('td a')
     @length = words.length
     randomize
-    scrape_defs
+    scrape_details
     validate
   end
 
@@ -25,7 +25,7 @@ class Wordwise::Scraper
 
   # Parses individual words' web pages. The first will be the word in
   # the question. The rest are used to generate false definitions.
-  def scrape_definitions
+  def scrape_details
     entry_url_1 = doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc1 = Nokogiri::HTML(open(entry_url_1))
     @word = doc1.css('.hw').text.match(/^[a-zA-Z]+/)

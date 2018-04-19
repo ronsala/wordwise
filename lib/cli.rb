@@ -1,10 +1,11 @@
 # Implements interface for user.
 class Wordwise::CLI
   attr_accessor :def, :defs, :origin1, :question, :word
-  attr_accessor :num_input, :letter_input
+  attr_accessor :num_input, :letter_input, :scraper
 
   # Start the program.
   def call
+    @scraper = Wordwise::Scraper.new
     introduction
     play
   end
