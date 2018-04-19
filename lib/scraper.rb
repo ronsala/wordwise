@@ -10,6 +10,9 @@ class Wordwise::Scraper
     @doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words"))
     @words = @doc.css('td a')
     @length = words.length
+    randomize
+    scrape_definitions
+    validate
   end
 
   # Return array of unique, pseudorandom index numbers to chose words from list.
@@ -36,13 +39,13 @@ class Wordwise::Scraper
 
     entry_url_3 = doc.css('td a')[@word_nos[2]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc3 = Nokogiri::HTML(open(entry_url_3))
-    word3 = doc_3.css('.hw').text.match(/^[a-zA-Z]+/)
-    @def3 = doc_3.css('.ind').first.text
+    word3 = doc3.css('.hw').text.match(/^[a-zA-Z]+/)
+    @def3 = doc3.css('.ind').first.text
 
     entry_url_4 = doc.css('td a')[@word_nos[3]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     doc4 = Nokogiri::HTML(open(entry_url_4))
-    word4 = doc_4.css('.hw').text.match(/^[a-zA-Z]+/)
-    @def4 = doc_4.css('.ind').first.text
+    word4 = doc4.css('.hw').text.match(/^[a-zA-Z]+/)
+    @def4 = doc4.css('.ind').first.text
     # entry_urls = []
     # @word_nos.each_index do |i|
     #   entry_urls << @doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join

@@ -1,6 +1,6 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :def, :defs, :origin1, :question, :word1
+  attr_accessor :def, :defs, :origin1, :question, :word
   attr_accessor :num_input, :letter_input
 
   # Start the program.
@@ -19,18 +19,18 @@ class Wordwise::CLI
 
   # Display question and ask for answer.
   def play
-    question = Wordwise::Question.new
     display_question
     ask_no
   end
 
   # Display the word and shuffled definitions.
   def display_question
-    puts "\nWhat does '#{@word}' mean?\n\n"
-    puts "1) #{@defs[0]}\n\n"
-    puts "2) #{@defs[1]}\n\n"
-    puts "3) #{@defs[2]}\n\n"
-    puts "4) #{@defs[3]}\n\n"
+    @question = Wordwise::Question.new
+    puts "\nWhat does '#{@question.word}' mean?\n\n"
+    puts "1) #{question.defs[0]}\n\n"
+    puts "2) #{question.defs[1]}\n\n"
+    puts "3) #{question.defs[2]}\n\n"
+    puts "4) #{question.defs[3]}\n\n"
   end
 
   # Get definition number from user.
