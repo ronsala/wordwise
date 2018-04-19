@@ -1,6 +1,6 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :definition, :defs, :origin1, :question, :word1
+  attr_accessor :def, :defs, :origin1, :question, :word1
   attr_accessor :num_input, :letter_input
 
   # Start the program.
@@ -110,7 +110,6 @@ class Wordwise::CLI
   def ask_n_or_e
     puts "Next question: 'n'. Exit game: 'e'\n"
     input = gets.strip.downcase
-
     case input
     when 'n'
       play
