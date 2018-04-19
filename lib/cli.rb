@@ -19,27 +19,18 @@ class Wordwise::CLI
 
   # Display question and ask for answer.
   def play
-    setup_question
+    question = Wordwise::Question.new
     display_question
     ask_no
   end
 
-  # Create new Question object.
-  def setup_question
-    question = Wordwise::Question.new
-    @def = question.definition_1
-    @defs = question.definitions_s
-    @word1 = question.word_1
-    @origin1 = question.origin_1
-  end
-
   # Display the word and shuffled definitions.
   def display_question
-    puts "\nWhat does '#{@word_1}' mean?\n\n"
-    puts "1) #{@definitions_s[0]}\n\n"
-    puts "2) #{@definitions_s[1]}\n\n"
-    puts "3) #{@definitions_s[2]}\n\n"
-    puts "4) #{@definitions_s[3]}\n\n"
+    puts "\nWhat does '#{@word}' mean?\n\n"
+    puts "1) #{@defs[0]}\n\n"
+    puts "2) #{@defs[1]}\n\n"
+    puts "3) #{@defs[2]}\n\n"
+    puts "4) #{@defs[3]}\n\n"
   end
 
   # Get definition number from user.

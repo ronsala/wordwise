@@ -5,6 +5,10 @@ class Wordwise::Question
 
   # Set instance variables for Question objects.
   def initialize
+    scraper = Wordwise::Scraper.new
+    @def = scraper.def
+    @word1 = scraper.word
+    @origin1 = scraper.origin1
     @defs = [@def, @def2, @def3, @def4].shuffle
   end
 end
