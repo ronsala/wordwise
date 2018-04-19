@@ -27,8 +27,8 @@ class Wordwise::CLI
   # Create new Question object.
   def setup_question
     question = Wordwise::Question.new
-    @definition = question.definition_1
-    @definitions_s = question.definitions_s
+    @def = question.definition_1
+    @defs = question.definitions_s
     @word1 = question.word_1
     @origin1 = question.origin_1
   end

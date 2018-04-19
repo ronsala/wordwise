@@ -1,7 +1,8 @@
 # Scrape web page containing word and the individual pages with their
 # definitions.
 # class Wordwise::Scraper
-class Wordwise::Scraper
+# Temp
+class Scraper
   attr_accessor :word1, :def1, :def2, :def3, :def4, :defs, :length
   attr_accessor :origin1, :word_nos, :doc
 
@@ -45,9 +46,11 @@ class Wordwise::Scraper
     # word_4 = doc_4.css('.hw').text.match(/^[a-zA-Z]+/)
     # @definition_4 = doc_4.css('.ind').first.text
     entry_urls = []
-    # @word_nos.each_index do |i|
-    #   entry_urls << doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
-    # end
+    @word_nos.each_index do |i|
+      entry_urls << @doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    end
+    # Temp
+    # puts "entry_urls = #{entry_urls}"
   end
 
   # Check for empty strings.
@@ -59,3 +62,6 @@ class Wordwise::Scraper
     end
   end
 end
+
+# Temp
+scraper = Scraper.new
