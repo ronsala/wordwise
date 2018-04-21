@@ -1,12 +1,11 @@
 # Assemble a question consisting of a word and its definition shuffled with 3
 # other definitions.
 class Wordwise::Question
-  attr_accessor :defs, :def, :def2, :def3, :def4, :word, :scraped, :scraper
+  attr_accessor :defs, :def, :def2, :def3, :def4, :word, :scraped
 
   # Set instance variables for Question objects.
   def initialize
-    @scraped = Wordwise::CLI.scraper
-
+    @scraped = Wordwise::Scraper.new
     scraped_defs = Wordwise::Scraper.scrape_details
     @def = scraped_defs.def
     @word = scraped_defs.word # Temp:Works

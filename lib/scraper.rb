@@ -12,7 +12,7 @@ class Wordwise::Scraper
     @words = @doc.css('td a')
     @length = words.length
     randomize
-    Wordwise::Scraper.scrape_details
+    scrape_details
     validate
   end
 
@@ -51,6 +51,9 @@ class Wordwise::Scraper
     # @word_nos.each_index do |i|
     #   entry_urls << @@doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     # end
+  end
+
+  def grab_question
   end
 
   # Check for empty strings.

@@ -5,13 +5,8 @@ class Wordwise::CLI
 
   # Start the program.
   def call
-    @scraper = Wordwise::Scraper.new
     introduction
     play
-  end
-
-  def self.scraper
-    @scraper
   end
 
   # Display welcome message.
