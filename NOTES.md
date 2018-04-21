@@ -58,3 +58,6 @@ D) definition D
 "Correct" or "Incorrect. Correct answer: #{correctAnswer}"
 
 [Play goes until each player has had 10 questions and the leader is declared the winner. If no leader, "Name, Name, etc" (players tied for lead), your word wisdom is strong. Now entering Sudden Death Round! The first player, chosen at random, to answer correctly wins!. Random player asked question, etc.]
+
+Debugging:
+
