@@ -61,6 +61,6 @@ D) definition D
 
 Debugging:
 
-Suggestions from Coach Enoch Griffith (4/21/18): 
+Suggestions from coach (4/21/18): 
 
 Classes using same module can share methods but not instance variables. The latter can be done with inheritance. Could make a bunch of questions at a time and use the sample method. Could give user a "loading..." message. Could use a grab_question method in Scraper. Can use finder methods like earlier in course. Says Question class still useful.

@@ -8,7 +8,6 @@ class Wordwise::Scraper
   def initialize
     @word_nos = []
     @doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words")) # Temp: Works
-    binding.pry
     @words = @doc.css('td a')
     @length = words.length
     randomize
@@ -53,9 +52,6 @@ class Wordwise::Scraper
     # end
   end
 
-  def grab_question
-  end
-
   # Check for empty strings.
   def validate
     [@word1, @word2, @word3, @word4, @def, @def2, @def3, @def4, @origin1].each do |word| 
@@ -63,5 +59,9 @@ class Wordwise::Scraper
         initialize
       end
     end
+  end
+
+  # Get a question from array with #sample.
+  def grab_question
   end
 end
