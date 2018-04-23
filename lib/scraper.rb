@@ -8,24 +8,16 @@ class Wordwise::Scraper
   def initialize
     @word_nos = []
     @doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words")) # Temp: Works
-    @words = @doc.css('td a')
-    @length = words.length
-    randomize
+    # @words = @doc.css('td a')
+    # @length = @doc.css('td a').length   binding.pry
+    entry_urls = @doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     scrape_details
     validate
   end
 
-  # Return array of unique, pseudorandom index numbers to chose words from list.
-  def randomize
-    until @word_nos.length == 4
-      rand_no = rand(0..@length - 1)
-      @word_nos.include?(rand_no) ? randomize : @word_nos << rand_no
-    end
-  end
-
   # Parses individual words' web pages. The first will be the word in
   # the question. The rest are used to generate false definitions.
-  def self.scrape_details
+  def scrape_details
     entry_url_1 = @doc.css('td a')[@word_nos[0]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     @doc1 = Nokogiri::HTML(open(entry_url_1))
     @word = @doc1.css('.hw').text.match(/^[a-zA-Z]+/)
@@ -48,7 +40,7 @@ class Wordwise::Scraper
     @def4 = @doc4.css('.ind').first.text
     # entry_urls = []
     # @word_nos.each_index do |i|
-    #   entry_urls << @@doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
+    #   entry_urls << @doc.css('td a')[@word_nos[i]].attribute('href').value.split(':').to_a.insert(1, 's:').join
     # end
   end
 
