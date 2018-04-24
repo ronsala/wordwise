@@ -23,8 +23,9 @@ class Wordwise::Scraper
   # Get a question from array with #sample.
   def self.scrape_entry_pages
     @docs = []
-    @question_array = []
-
+    @words = []
+    @defs = []
+    
     begin
 
     question_urls = @entry_urls.sample(4)

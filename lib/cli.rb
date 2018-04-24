@@ -1,11 +1,10 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :def, :defs, :origin1, :question, :word, :question_array
-  attr_accessor :num_input, :letter_input, :scraper
+  attr_accessor :question
 
   # Start the program.
   def call
-    @entries = Wordwise::Scraper.scrape_index_page
+    scraper = Wordwise::Scraper.scrape_index_page
     introduction
     play
   end
@@ -37,8 +36,8 @@ class Wordwise::CLI
   # Get definition number from user.
   def ask_no
     puts "Please enter a number 1-4:\n\n"
-    @num_input = gets.strip
-    case @num_input
+    num_input = gets.strip
+    case num_input
     when '1'
       if @question.defs[0] == @question.def
         correct
