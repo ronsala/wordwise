@@ -10,5 +10,13 @@ class Wordwise::Question
     @def = question_array[1][0]
     @defs = question_array[1].shuffle
     @origin = question_array[2]
+    validate
+  end
+
+  # Check for empty strings.
+  def validate
+    [@word, @defs[0], @defs[1],@defs[2],@defs[3], @origin].each do |word|
+      initialize if word == ''
+    end
   end
 end
