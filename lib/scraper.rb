@@ -21,15 +21,6 @@ class Wordwise::Scraper
     @entry_urls
   end
 
-  # Check for empty strings.
-  # def validate
-  #   [@word1, @word2, @word3, @word4, @def, @def2, @def3, @def4, @origin1].each do |word| 
-  #     if word == ''
-  #       initialize
-  #     end
-  #   end
-  # end
-
   # Get a question from array with #sample.
   def self.scrape_entry_pages
     question_urls = @entry_urls.sample(4)
@@ -46,7 +37,12 @@ class Wordwise::Scraper
     @question_array = [@words, @defs, @origin]
   end
 
-  # def read
-  #   puts @words
-  # end
+  Check for empty strings.
+  def validate
+    [@word1, @word2, @word3, @word4, @def, @def2, @def3, @def4, @origin1].each do |word| 
+      if word == ''
+        initialize
+      end
+    end
+  end
 end

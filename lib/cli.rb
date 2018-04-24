@@ -1,6 +1,6 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :def, :defs, :origin1, :question, :word
+  attr_accessor :def, :defs, :origin1, :question, :word, :question_array
   attr_accessor :num_input, :letter_input, :scraper
 
   # Start the program.
@@ -20,19 +20,13 @@ class Wordwise::CLI
 
   # Display question and ask for answer.
   def play
-    make_question
+    @question = Wordwise::Question.new
     display_question
     ask_no
   end
 
-  def make_question
-    question_array = Wordwise::Scraper.scrape_entry_pages
-    binding.pry
-  end
-
   # Display the word and shuffled definitions.
   def display_question
-    @question = Wordwise::Question.new
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     puts "1) #{question.defs[0]}\n\n"
     puts "2) #{question.defs[1]}\n\n"
