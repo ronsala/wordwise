@@ -5,6 +5,7 @@ class Wordwise::CLI
 
   # Start the program.
   def call
+    @entries = Wordwise::Scraper.scrape_index_page
     introduction
     play
   end
@@ -19,8 +20,14 @@ class Wordwise::CLI
 
   # Display question and ask for answer.
   def play
+    make_question
     display_question
     ask_no
+  end
+
+  def make_question
+    question_array = Wordwise::Scraper.scrape_entry_pages
+    binding.pry
   end
 
   # Display the word and shuffled definitions.
