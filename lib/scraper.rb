@@ -8,7 +8,6 @@ class Wordwise::Scraper
   def self.scrape_index_page
     @doc = Nokogiri::HTML(open("https://en.oxforddictionaries.com/explore/weird-and-wonderful-words")) # Temp: Works
     @entry_urls = []
-    @docs = []
     @length = @doc.css('td a').length
     @question_urls = []
     @words = []
@@ -23,6 +22,11 @@ class Wordwise::Scraper
 
   # Get a question from array with #sample.
   def self.scrape_entry_pages
+    @docs = []
+    @question_array = []
+
+    begin
+
     question_urls = @entry_urls.sample(4)
 
     question_urls.each_index do |i|
@@ -33,16 +37,11 @@ class Wordwise::Scraper
       @words << @docs[i].css('.hw').text.match(/^[a-zA-Z]+/).to_s
       @defs << @docs[i].css('.ind').first.text
     end
-    @origin << @docs[0].css('.senseInnerWrapper p').text
+    @origin = @docs[0].css('.senseInnerWrapper p').text
     @question_array = [@words, @defs, @origin]
-  end
 
-  Check for empty strings.
-  def validate
-    [@word1, @word2, @word3, @word4, @def, @def2, @def3, @def4, @origin1].each do |word| 
-      if word == ''
-        initialize
-      end
+    rescue StandardError=>e
+      self.scrape_entry_pages
     end
   end
 end

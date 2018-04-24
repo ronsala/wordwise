@@ -28,10 +28,10 @@ class Wordwise::CLI
   # Display the word and shuffled definitions.
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
-    puts "1) #{question.defs[0]}\n\n"
-    puts "2) #{question.defs[1]}\n\n"
-    puts "3) #{question.defs[2]}\n\n"
-    puts "4) #{question.defs[3]}\n\n"
+    puts "1) #{@question.defs[0]}\n\n"
+    puts "2) #{@question.defs[1]}\n\n"
+    puts "3) #{@question.defs[2]}\n\n"
+    puts "4) #{@question.defs[3]}\n\n"
   end
 
   # Get definition number from user.
@@ -40,31 +40,31 @@ class Wordwise::CLI
     @num_input = gets.strip
     case @num_input
     when '1'
-      if @defs[0] == @def
+      if @question.defs[0] == @question.def
         correct
       else
         incorrect
       end
     when '2'
-      if @defs[1] == @def
+      if @question.defs[1] == @question.def
         correct
       else
         incorrect
       end
     when '3'
-      if @defs[2] == @def
+      if @question.defs[2] == @question.def
         correct
       else
         incorrect
       end
     when '4'
-      if @defs[3] == @def
+      if @question.defs[3] == @question.def
         correct
       else
         incorrect
       end
     else
-      ask_input
+      ask_no
     end
   end
 
@@ -77,7 +77,7 @@ class Wordwise::CLI
   # Tell user they answered incorrectly, give correct answer, and ask how they
   # want to proceed.
   def incorrect
-    puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@def}'\n"
+    puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@question.def}'\n"
     ask_letter
   end
 
@@ -87,9 +87,10 @@ class Wordwise::CLI
     letter_input = gets.strip.downcase
     case letter_input
     when 'o'
-      puts "\n#{@origin1}\n\n"
+      puts "\n#{@question.origin}\n\n"
       ask_n_or_e
     when 'n'
+      @question = nil
       play
     when 'e'
       goodbye
