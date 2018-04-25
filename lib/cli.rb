@@ -1,10 +1,13 @@
+# [] Fix intermittant hanging at startup.
+
 # Implements interface for user.
 class Wordwise::CLI
   attr_accessor :question
 
   # Start the program.
   def call
-    scraper = Wordwise::Scraper.scrape_index_page
+    # scraper = Wordwise::Scraper.scrape_index_page
+    Wordwise::Scraper.scrape_index_page
     introduction
     play
   end
@@ -36,32 +39,16 @@ class Wordwise::CLI
   # Get definition number from user.
   def ask_no
     puts "Please enter a number 1-4:\n\n"
-    num_input = gets.strip
-    case num_input
+    input = gets.strip
+    case input
     when '1'
-      if @question.defs[0] == @question.def
-        correct
-      else
-        incorrect
-      end
+      @question.defs[0] == @question.def ? correct : incorrect
     when '2'
-      if @question.defs[1] == @question.def
-        correct
-      else
-        incorrect
-      end
+      @question.defs[1] == @question.def ? correct : incorrect
     when '3'
-      if @question.defs[2] == @question.def
-        correct
-      else
-        incorrect
-      end
+      @question.defs[2] == @question.def ? correct : incorrect
     when '4'
-      if @question.defs[3] == @question.def
-        correct
-      else
-        incorrect
-      end
+      @question.defs[3] == @question.def ? correct : incorrect
     else
       ask_no
     end
@@ -83,13 +70,12 @@ class Wordwise::CLI
   # Display menu after user has answered a question.
   def ask_letter
     puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
-    letter_input = gets.strip.downcase
-    case letter_input
+    input = gets.strip.downcase
+    case input
     when 'o'
       puts "\n#{@question.origin}\n\n"
       ask_n_or_e
     when 'n'
-      @question = nil
       play
     when 'e'
       goodbye
