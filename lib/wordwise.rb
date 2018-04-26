@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-require "wordwise/version"
-require "./config/environment"
-=======
-# Is this file necessary?
 require 'wordwise/version'
 require './config/environment'
 
 # Create module for communication among classes.
-# module Wordwise
-# end
->>>>>>> workshop
+module Wordwise
+end
