@@ -4,6 +4,7 @@ class Wordwise::CLI
 
   # Start the program.
   def call
+    Wordwise::Scraper.scrape_word_lists
     Wordwise::Scraper.scrape_index_page
     introduction
     play
