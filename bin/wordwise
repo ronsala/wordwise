@@ -2,4 +2,4 @@
 
 require_relative '../config/environment'
 
-CLI.new.call
+Wordwise::CLI.new.call

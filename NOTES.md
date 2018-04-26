@@ -58,3 +58,9 @@ D) definition D
 "Correct" or "Incorrect. Correct answer: #{correctAnswer}"
 
 [Play goes until each player has had 10 questions and the leader is declared the winner. If no leader, "Name, Name, etc" (players tied for lead), your word wisdom is strong. Now entering Sudden Death Round! The first player, chosen at random, to answer correctly wins!. Random player asked question, etc.]
+
+Debugging:
+
+Suggestions from coach (4/21/18): 
+
+Classes using same module can share methods but not instance variables. The latter can be done with inheritance. Could make a bunch of questions at a time and use the sample method. Could give user a "loading..." message. Could use a grab_question method in Scraper. Can use finder methods like earlier in course. Says Question class still useful.
