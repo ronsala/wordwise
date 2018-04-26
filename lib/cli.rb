@@ -1,12 +1,9 @@
-# [] Fix intermittant hanging at startup.
-
 # Implements interface for user.
 class Wordwise::CLI
   attr_accessor :question
 
   # Start the program.
   def call
-    # scraper = Wordwise::Scraper.scrape_index_page
     Wordwise::Scraper.scrape_index_page
     introduction
     play
@@ -27,13 +24,11 @@ class Wordwise::CLI
     ask_no
   end
 
-  # Display the word and shuffled definitions.
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
-    puts "1) #{@question.defs[0]}\n\n"
-    puts "2) #{@question.defs[1]}\n\n"
-    puts "3) #{@question.defs[2]}\n\n"
-    puts "4) #{@question.defs[3]}\n\n"
+    (0..3).each do |i|
+      puts "#{i + 1}) #{@question.defs[i]}\n\n"
+    end
   end
 
   # Get definition number from user.
