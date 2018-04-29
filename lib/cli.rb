@@ -1,24 +1,46 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :question
+  attr_reader :question
 
   # Start the program.
   def call
-    Wordwise::Scraper.scrape_index_page
+    Wordwise::Scraper.scrape_word_lists
     introduction
-    play
   end
 
   # Display welcome message.
   def introduction
-    puts "WELCOME TO WORDWISE!\n\n".center(70)
-    puts "You can learn more about the words in this quiz at\n\n".center(70)
-    puts "https://www.oxforddictionaries.com.\n\n".center(70)
-    puts "Get ready to test your word wisdom....\n\n".center(70)
+    puts ''
+    puts "WELCOME TO WORDWISE!\n".center(80)
+    puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
+    puts "Get ready to test your word wisdom....\n\n".center(80)
+    puts "What word list would you like to test your knowledge on?\n\n"
+    display_lists
+  end
+
+  def display_lists
+    puts ''
+    Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
+      puts "     #{i + 1}) #{l}"
+    end
+    ask_list
+  end
+
+  def ask_list
+    puts "\nPlease enter the number of the list you want:\n"
+    input = gets.strip.to_i
+    size = Wordwise::Scraper.scrape_word_lists.size
+    if input.between?(1, size)
+      Wordwise::Scraper.scrape_word_list(input - 1)
+    else
+      ask_list
+    end
+    play
   end
 
   # Display question and ask for answer.
   def play
+    puts "Loading question...\n\n"
     @question = Wordwise::Question.new
     display_question
     ask_no
@@ -27,7 +49,7 @@ class Wordwise::CLI
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
-      puts "#{i + 1}) #{@question.defs[i]}\n\n"
+      puts "     #{i + 1}) #{@question.defs[i]}\n\n"
     end
   end
 
@@ -58,13 +80,13 @@ class Wordwise::CLI
   # Tell user they answered incorrectly, give correct answer, and ask how they
   # want to proceed.
   def incorrect
-    puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@question.def}'\n"
+    puts "\nINCORRECT.\n\nCORRECT ANSWER:\n'#{@question.def}'\n"
     ask_letter
   end
 
   # Display menu after user has answered a question.
   def ask_letter
-    puts "\nWord origin: 'o'. Next question: 'n'. Exit game: 'e'\n"
+    puts "\nWord origin: 'o'. Next question: 'n'. Switch list: 's'. Exit: 'e'\n"
     input = gets.strip.downcase
     case input
     when 'o'
@@ -72,6 +94,8 @@ class Wordwise::CLI
       ask_n_or_e
     when 'n'
       play
+    when 's'
+      display_lists
     when 'e'
       goodbye
     else
@@ -80,16 +104,18 @@ class Wordwise::CLI
   end
 
   # Display menu after origin has been displayed.
-  def ask_n_or_e
-    puts "Next question: 'n'. Exit game: 'e'\n"
+  def ask_n_s_or_e
+    puts "Next question: 'n'. Switch list: 's'. Exit game: 'e'\n"
     input = gets.strip.downcase
     case input
     when 'n'
       play
+    when 's'
+      display_lists
     when 'e'
       goodbye
     else
-      ask_n_or_e
+      ask_n_s_or_e
     end
   end
 
