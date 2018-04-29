@@ -14,6 +14,7 @@ class Wordwise::Scraper
     (0..html.css('.record').length - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
       @lists << html.css('.record h2')[i].text
+      @lists.delete_if {|l| l =~ /phobias/} # Removes list not fitting format
     end
   end
 
@@ -32,10 +33,6 @@ class Wordwise::Scraper
     @words_ary.shift # Removes any column headings
     @words_ary.pop # Removes empty string from last td
     @words_ary.delete_if {|w| w =~ /\W/} # Removes words with non-word character
-  end
-
-  def self.current_url
-    @current_url
   end
 
   # Samples 4 urls to words' pages and parse the question word, its origin and
