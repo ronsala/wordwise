@@ -2,12 +2,6 @@
 class Wordwise::CLI
   attr_reader :question
 
-  # Start the program.
-  def call
-    Wordwise::Scraper.scrape_word_lists
-    introduction
-  end
-
   # Display welcome message.
   def introduction
     puts ''

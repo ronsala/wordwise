@@ -39,6 +39,7 @@ class Wordwise::Scraper
     docs, word_urls, question_words, question_defs = [], [], [], []
 
     begin
+      # Samples from index 1 of array to avoid any column headings.
       question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
 
       question_words_defs.each_index do |i|
@@ -53,7 +54,7 @@ class Wordwise::Scraper
 
       origin = docs[0].css('.senseInnerWrapper p')[-1].text
       [question_words, question_defs, origin]
-    rescue NoMethodError => e # Selects new word list when data missing
+    rescue NoMethodError => e # Selects new word list when data missing.
       scrape_entry_pages
     end
   end
