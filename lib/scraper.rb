@@ -37,7 +37,6 @@ class Wordwise::Scraper
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
     docs = []
-    @defs = []
     word_urls = []
     question_words = []
     question_defs = []
@@ -56,8 +55,9 @@ class Wordwise::Scraper
       end
 
       origin = docs[0].css('.senseInnerWrapper p')[-1].text
-      
-      question_array = [question_words, question_defs, origin]
+
+      # question_array = [question_words, question_defs, origin]
+      [question_words, question_defs, origin]
     rescue NoMethodError => e # Selects new word list when data missing
       scrape_entry_pages
     end
