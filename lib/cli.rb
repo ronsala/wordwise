@@ -1,6 +1,6 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :question
+  attr_reader :question
 
   # Start the program.
   def call
@@ -36,7 +36,7 @@ class Wordwise::CLI
 
   # Display question and ask for answer.
   def play
-    puts "Loading question....\n\n"
+    puts "Loading question...\n\n"
     @question = Wordwise::Question.new
     display_question
     ask_no
@@ -45,7 +45,7 @@ class Wordwise::CLI
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
-      puts "#{i + 1}) #{@question.defs[i]}\n\n"
+      puts "     #{i + 1}) #{@question.defs[i]}\n\n"
     end
   end
 

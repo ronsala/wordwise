@@ -5,7 +5,6 @@ class Wordwise::Question
 
   # Set instance variables for Question objects.
   def initialize
-    # question_array = Wordwise::Scraper.scrape_entry_pages
     question_array = Wordwise::Scraper.scrape_entry_pages
     Wordwise::Scraper.scrape_entry_pages
     @word = question_array[0][0]
