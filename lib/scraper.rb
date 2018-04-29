@@ -8,13 +8,13 @@ class Wordwise::Scraper
   # Scrapes page with list of word lists.
   def self.scrape_word_lists
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
-    @list_urls = []
-    lists = []
+    @list_urls, lists = [], []
+
     (0..html.css('.record').length - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
-      @list_urls.delete_if {|u| u =~ /phobias/} # Removes list not fitting format
+      @list_urls.delete_if { |u| u =~ /phobias/ } # Removes list not fitting format
       lists << html.css('.record h2')[i].text
-      lists.delete_if {|l| l =~ /phobias/} # Removes list not fitting format
+      lists.delete_if { |l| l =~ /phobias/ } # Removes list not fitting format
     end
     lists
   end
@@ -24,22 +24,19 @@ class Wordwise::Scraper
     doc = Nokogiri::HTML(open(@list_urls[page_idx]))
     @words_defs = {}
 
-    (0..doc.css('tr').length - 1).each do |i| 
+    (0..doc.css('tr').length - 1).each do |i|
       @words_defs.store(doc.css('tr')[i].css('td')[0].text, doc.css('tr')[i].css('td')[1].text)
     end
 
     @words_defs.delete('')
-    @words_defs.delete_if {|w| w =~ /\W/} # Removes words with non-word character
+    @words_defs.delete_if { |w| w =~ /\W/ } # Removes words w/ non-word chars
     @words_defs_ary = @words_defs.to_a
   end
 
   # Samples 4 urls to words' pages and parse the question word, its origin and
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
-    docs = []
-    word_urls = []
-    question_words = []
-    question_defs = []
+    docs, word_urls, question_words, question_defs = [], [], [], []
 
     begin
       question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
@@ -55,8 +52,6 @@ class Wordwise::Scraper
       end
 
       origin = docs[0].css('.senseInnerWrapper p')[-1].text
-
-      # question_array = [question_words, question_defs, origin]
       [question_words, question_defs, origin]
     rescue NoMethodError => e # Selects new word list when data missing
       scrape_entry_pages
