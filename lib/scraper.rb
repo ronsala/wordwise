@@ -1,7 +1,8 @@
 # Scrapes web page containing word and the individual pages with their
 # definitions.
 class Wordwise::Scraper
-  attr_accessor :words, :origin, :doc, :entry_urls, :question_array, :list_urls, :lists, :words_ary
+  attr_accessor :words, :origin, :doc, :question_array, :list_urls
+  attr_accessor :lists, :words_ary, :word_urls
 
   BASEPATH = 'https://en.oxforddictionaries.com'
 
@@ -41,18 +42,20 @@ class Wordwise::Scraper
     word_urls = []
     begin
       question_words = @words_ary[1..@words_ary.size - 1].sample(4)
+
       question_words.each_index do |i|
         word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
-        # docs << Nokogiri::HTML(open(question_urls[i]))
+        docs << Nokogiri::HTML(open(word_urls[i]))
       end
-binding.pry
+
       docs.each_index do |i|
-        @words << docs[i].css('.hw').text.match(/^[a-zA-Z]+/).to_s
         @defs << docs[i].css('.ind').first.text
       end
+
       @origin = docs[0].css('.senseInnerWrapper p').text
-      @question_array = [@words, @defs, @origin]
-    rescue NoMethodError => e
+      @question_array = [question_words, @defs, @origin]
+      binding.pry
+    rescue NoMethodError => e # Selects new word list when data missing
       scrape_entry_pages
     end
   end
