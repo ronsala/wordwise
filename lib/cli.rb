@@ -85,7 +85,7 @@ class Wordwise::CLI
     case input
     when 'o'
       puts "\n#{@question.origin}\n\n"
-      ask_n_or_e
+      ask_n_s_or_e
     when 'n'
       play
     when 's'
