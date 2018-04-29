@@ -10,6 +10,10 @@ class Wordwise::Question
     @def = question_array[1][0]
     @defs = question_array[1].shuffle
     @origin = question_array[2]
+    # @word = @words_defs_ary[0][0]
+    # @def = question_array[1][0]
+    # @defs = question_array[1].shuffle
+    # @origin = question_array[2]
     validate
   end
 
