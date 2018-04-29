@@ -2,12 +2,6 @@
 class Wordwise::CLI
   attr_reader :question
 
-  # Start the program.
-  def call
-    Wordwise::Scraper.scrape_word_lists
-    introduction
-  end
-
   # Display welcome message.
   def introduction
     puts ''
@@ -20,6 +14,7 @@ class Wordwise::CLI
 
   def display_lists
     puts ''
+    # Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
     Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
       puts "     #{i + 1}) #{l}"
     end
@@ -91,7 +86,7 @@ class Wordwise::CLI
     case input
     when 'o'
       puts "\n#{@question.origin}\n\n"
-      ask_n_or_e
+      ask_n_s_or_e
     when 'n'
       play
     when 's'
