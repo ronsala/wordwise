@@ -1,7 +1,7 @@
 # Scrape web page containing word and the individual pages with their
 # definitions.
 class Wordwise::Scraper
-  attr_accessor :words, :origin, :doc, :entry_urls, :question_array, :list_urls
+  attr_accessor :words, :origin, :doc, :entry_urls, :question_array, :list_urls, :lists
 
   BASEPATH = 'https://en.oxforddictionaries.com'
 
@@ -9,9 +9,15 @@ class Wordwise::Scraper
   def self.scrape_word_lists
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls = []
+    @lists = []
     (0..html.css('.record').length - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
+      @lists << html.css('.record h2')[i].text
     end
+  end
+
+  def self.lists
+    @lists = @lists
   end
 
   # Scrape word list page.

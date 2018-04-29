@@ -5,7 +5,6 @@ class Wordwise::CLI
   # Start the program.
   def call
     Wordwise::Scraper.scrape_word_lists
-    Wordwise::Scraper.scrape_index_page
     introduction
     play
   end
@@ -16,6 +15,13 @@ class Wordwise::CLI
     puts "You can learn more about the words in this quiz at\n\n".center(70)
     puts "https://www.oxforddictionaries.com.\n\n".center(70)
     puts "Get ready to test your word wisdom....\n\n".center(70)
+    puts 'What word list would you like to test your knowledge on?'
+    puts Wordwise::Scraper.lists
+    ask_list
+  end
+
+  def ask_list
+    puts ""
   end
 
   # Display question and ask for answer.
