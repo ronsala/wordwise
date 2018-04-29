@@ -16,7 +16,7 @@ class Wordwise::CLI
     puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
     puts "Get ready to test your word wisdom....\n\n".center(80)
     puts "What word list would you like to test your knowledge on?\n\n"
-    Wordwise::Scraper.lists.each_with_index do |l, i|
+    Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
       puts "     #{i + 1}) #{l}"
     end
     puts "\nPlease enter the number of the list you want:\n"
@@ -25,7 +25,7 @@ class Wordwise::CLI
 
   def ask_list
     input = gets.strip.to_i
-    size = Wordwise::Scraper.lists.size
+    size = Wordwise::Scraper.scrape_word_lists.size
     if input.between?(1, size)
       Wordwise::Scraper.scrape_word_list(input - 1)
     else
