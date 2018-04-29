@@ -19,11 +19,19 @@ class Wordwise::CLI
     Wordwise::Scraper.lists.each_with_index do |l, i|
       puts "     #{i + 1}) #{l}"
     end
+    puts "\n\nPlease enter the number of the list you want:\n\n"
     ask_list
   end
 
   def ask_list
-    puts ""
+    input = gets.strip.to_i
+    size = Wordwise::Scraper.lists.size
+    if input.between?(1, size)
+      Wordwise::Scraper.scrape_word_list(input - 1)
+    else
+      puts "Please enter a number 1 - #{size}:\n\n"
+      ask_list
+    end
   end
 
   # Display question and ask for answer.
