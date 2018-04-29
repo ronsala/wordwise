@@ -18,13 +18,6 @@ class Wordwise::Scraper
   def self.scrape_index_page
     @doc = Nokogiri::HTML(open(@list_urls[1]))
     @entry_urls = []
-
-    # (0..@doc.css('td a').length - 1).('td strong').each do |i|
-    #   @entry_urls << @doc.css('td a')[i].attribute('href').value.split(':').to_a.insert(1, 's:').join
-    # end
-    # (0..@doc.css('td a').length - 1).('td strong').each do |i|
-    #   @entry_urls << @doc.css('td a')[i].attribute('href').value.split(':').to_a.insert(1, 's:').join
-    # end
     (0..@doc.css('td strong').length - 1).each do |i|
       @entry_urls << @doc.css('td strong')[i].text
     end
