@@ -3,20 +3,19 @@
 class Wordwise::Scraper
   attr_accessor :words, :origin, :doc, :entry_urls, :question_array, :list_urls
 
-  BASE_PATH = "https://en.oxforddictionaries.com"
+  BASEPATH = 'https://en.oxforddictionaries.com'
 
   # Scrape page with list of word lists.
   def self.scrape_word_lists
-    html = Nokogiri::HTML(open(BASE_PATH + "/explore/word-lists"))
+    html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls = []
     (0..html.css('.record').length - 1).each do |i|
-      @list_urls << "https://en.oxforddictionaries.com" + html.css('.record a')[i].attribute('href').value
+      @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
     end
   end
 
   # Scrape word list page.
   def self.scrape_index_page
-    # binding.pry
     @doc = Nokogiri::HTML(open(@list_urls[1]))
     @entry_urls = []
 
@@ -26,8 +25,9 @@ class Wordwise::Scraper
     # (0..@doc.css('td a').length - 1).('td strong').each do |i|
     #   @entry_urls << @doc.css('td a')[i].attribute('href').value.split(':').to_a.insert(1, 's:').join
     # end
-    @entry_urls << @doc.css('td strong')[1].text
-    binding.pry
+    (0..@doc.css('td strong').length - 1).each do |i|
+      @entry_urls << @doc.css('td strong')[i].text
+    end
   end
 
   # Sample 4 urls to words' pages and parse the question word, its origin and
