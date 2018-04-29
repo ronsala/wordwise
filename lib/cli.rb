@@ -15,8 +15,10 @@ class Wordwise::CLI
     puts "You can learn more about the words in this quiz at\n\n".center(70)
     puts "https://www.oxforddictionaries.com.\n\n".center(70)
     puts "Get ready to test your word wisdom....\n\n".center(70)
-    puts 'What word list would you like to test your knowledge on?'
-    puts Wordwise::Scraper.lists
+    puts "What word list would you like to test your knowledge on?\n\n"
+    Wordwise::Scraper.lists.each_with_index do |l, i|
+      puts "     #{i + 1}) #{l}"
+    end
     ask_list
   end
 
