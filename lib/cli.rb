@@ -14,6 +14,7 @@ class Wordwise::CLI
 
   def display_lists
     puts ''
+    # Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
     Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
       puts "     #{i + 1}) #{l}"
     end

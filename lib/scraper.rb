@@ -27,9 +27,9 @@ class Wordwise::Scraper
     (0..doc.css('tr').length - 1).each do |i|
       @words_defs.store(doc.css('tr')[i].css('td')[0].text, doc.css('tr')[i].css('td')[1].text)
     end
-
+    # Removes invalid entries
     @words_defs.delete('')
-    @words_defs.delete_if { |w| w =~ /\W/ } # Removes words w/ non-word chars
+    @words_defs.delete_if { |w| w =~ /\W/ || w =~ /xylene/ }
     @words_defs_ary = @words_defs.to_a
   end
 
