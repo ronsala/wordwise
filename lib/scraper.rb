@@ -18,12 +18,13 @@ class Wordwise::Scraper
   end
 
   def self.lists
-    @lists = @lists
+    @lists
   end
 
   # Scrapes a page with a word list.
   def self.scrape_word_list(page_idx)
     @doc = Nokogiri::HTML(open(@list_urls[page_idx]))
+    @current_url = @list_urls[page_idx]
     @words_ary = []
     (0..@doc.css('tr').length - 1).each do |i|
       @words_ary << @doc.css('tr')[i].css('td')[0].text
@@ -31,6 +32,10 @@ class Wordwise::Scraper
     @words_ary.shift # Removes any column headings
     @words_ary.pop # Removes empty string from last td
     @words_ary.delete_if {|w| w =~ /\W/} # Removes words with non-word character
+  end
+
+  def self.current_url
+    @current_url
   end
 
   # Samples 4 urls to words' pages and parse the question word, its origin and
