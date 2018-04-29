@@ -42,19 +42,17 @@ class Wordwise::Scraper
     word_urls = []
     begin
       question_words = @words_ary[1..@words_ary.size - 1].sample(4)
-
       question_words.each_index do |i|
         word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
         docs << Nokogiri::HTML(open(word_urls[i]))
       end
 
       docs.each_index do |i|
-        @defs << docs[i].css('.ind').first.text
+        @defs << docs[i].css('.ind')[0].text
       end
 
-      @origin = docs[0].css('.senseInnerWrapper p').text
+      @origin = docs[0].css('.senseInnerWrapper p')[-1].text
       @question_array = [question_words, @defs, @origin]
-      binding.pry
     rescue NoMethodError => e # Selects new word list when data missing
       scrape_entry_pages
     end
