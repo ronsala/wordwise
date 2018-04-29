@@ -11,7 +11,8 @@ class Wordwise::CLI
 
   # Display welcome message.
   def introduction
-    puts "\n\nWELCOME TO WORDWISE!\n\n".center(80)
+    puts ''
+    puts "WELCOME TO WORDWISE!\n".center(80)
     puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
     puts "Get ready to test your word wisdom....\n\n".center(80)
     puts "What word list would you like to test your knowledge on?\n\n"
@@ -35,13 +36,13 @@ class Wordwise::CLI
 
   # Display question and ask for answer.
   def play
+    puts "Loading question....\n\n"
     @question = Wordwise::Question.new
     display_question
     ask_no
   end
 
   def display_question
-    puts "Loading question....\n\n"
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
       puts "#{i + 1}) #{@question.defs[i]}\n\n"
@@ -75,7 +76,7 @@ class Wordwise::CLI
   # Tell user they answered incorrectly, give correct answer, and ask how they
   # want to proceed.
   def incorrect
-    puts "\nINCORRECT.\n\nCORRECT ANSWER: '#{@question.def}'\n"
+    puts "\nINCORRECT.\n\nCORRECT ANSWER:\n'#{@question.def}'\n"
     ask_letter
   end
 
