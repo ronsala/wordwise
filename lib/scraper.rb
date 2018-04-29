@@ -24,9 +24,10 @@ class Wordwise::Scraper
   def self.scrape_word_list(page_idx)
     @doc = Nokogiri::HTML(open(@list_urls[page_idx]))
     @words_ary = []
-    (0..@doc.css('td').length - 1).each do |i|
-      @words_ary << @doc.css('td')[i].text
+    (0..@doc.css('tr').length - 1).each do |i|
+      @words_ary << @doc.css('tr')[i].css('td')[0].text
     end
+    @words_ary.pop # Remove empty td
   end
 
   # Sample 4 urls to words' pages and parse the question word, its origin and
@@ -37,7 +38,7 @@ class Wordwise::Scraper
     @defs = []
     word_urls = []
     begin
-      question_words = @words_ary[1..@words_ary.size].sample(4)
+      question_words = @words_ary[1..@words_ary.size - 1].sample(4)
       question_words.each_index do |i|
         word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
         # docs << Nokogiri::HTML(open(question_urls[i]))

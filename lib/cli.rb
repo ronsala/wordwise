@@ -1,3 +1,5 @@
+# [] Work around phobias page.
+
 # Implements interface for user.
 class Wordwise::CLI
   attr_accessor :question
