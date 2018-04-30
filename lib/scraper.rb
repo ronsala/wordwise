@@ -37,29 +37,30 @@ class Wordwise::Scraper
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
     docs, word_urls, question_words, question_defs = [], [], [], []
+    if @words_defs_ary.size >= 4
+      begin
+        # Samples starting at index 1 of array to avoid any column headings.
+        question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
+        # Prevents repetition of words in questions.
+        @words_defs_ary -= question_words_defs
 
-    begin
-      # Samples starting at index 1 of array to avoid any column headings.
-      question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
-      # Prevents repetition of words in questions.
-      @words_defs_ary -= question_words_defs
-      if @words_defs_ary.size < 4
-        puts "Sorry, no more questions available in category. Enter 'c' to change category."
-      end
-      question_words_defs.each_index do |i|
-        question_words << question_words_defs[i][0]
-        question_defs << question_words_defs[i][1]
-      end
+        question_words_defs.each_index do |i|
+          question_words << question_words_defs[i][0]
+          question_defs << question_words_defs[i][1]
+        end
 
-      question_words.each_index do |i|
-        word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
-        docs << Nokogiri::HTML(open(word_urls[i]))
-      end
+        question_words.each_index do |i|
+          word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
+          docs << Nokogiri::HTML(open(word_urls[i]))
+        end
 
-      origin = docs[0].css('.senseInnerWrapper p')[-1].text
-      [question_words, question_defs, origin]
-    rescue NoMethodError => e # Selects new word list when data missing.
-      scrape_entry_pages
+        origin = docs[0].css('.senseInnerWrapper p')[-1].text
+        [question_words, question_defs, origin]
+      rescue NoMethodError => e # Selects new word list when data missing.
+        scrape_entry_pages
+      end
+    else
+      Wordwise::CLI.ask_c_or_e
     end
   end
 end

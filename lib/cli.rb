@@ -81,7 +81,7 @@ class Wordwise::CLI
 
   # Display menu after user has answered a question.
   def ask_letter
-    puts "\nWord origin: 'o'. Next question: 'n'. Change category: 'c'. Exit: 'e'\n"
+    puts "\nWord origin: 'o'. Next question: 'n'. Change category: 'c'. Exit: 'e'.\n"
     input = gets.strip.downcase
     case input
     when 'o'
@@ -112,6 +112,11 @@ class Wordwise::CLI
     else
       ask_n_c_or_e
     end
+  end
+
+  def self.ask_c_or_e
+    puts 'Sorry, no more questions available in category.'
+    puts "Change category: 'c'. Exit: 'e'.\n"
   end
 
   # Bid user farewell and end play.
