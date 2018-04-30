@@ -9,13 +9,12 @@ class Wordwise::Scraper
   def self.scrape_word_lists
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls, lists = [], []
-
     (0..html.css('.record').length - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
-      @list_urls.delete_if { |u| u =~ /phobias/ } # Removes list not fitting format
       lists << html.css('.record h2')[i].text
-      lists.delete_if { |l| l =~ /phobias/ } # Removes list not fitting format
     end
+    @list_urls.delete_if { |u| u =~ /phobias/ } # Removes list not fitting format
+    lists.delete_if { |l| l =~ /phobias/ } # Removes list not fitting format
     lists
   end
 
