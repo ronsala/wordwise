@@ -42,8 +42,7 @@ class Wordwise::Scraper
         # Samples starting at index 1 of array to avoid any column headings.
         question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
         # Prevents repetition of words in questions.
-        @words_defs_ary -= question_words_defs
-
+        @words_defs_ary.delete_if { |wd| wd == question_words_defs[0] }
         question_words_defs.each_index do |i|
           question_words << question_words_defs[i][0]
           question_defs << question_words_defs[i][1]
