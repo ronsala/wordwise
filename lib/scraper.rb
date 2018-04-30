@@ -34,7 +34,7 @@ class Wordwise::Scraper
 
     # Removes invalid entries
     @words_defs.delete('')
-    @words_defs.delete_if { |w| w =~ /\W/ || w =~ /xylene/ }
+    @words_defs.delete_if { |w| w =~ /\W/ || w =~ /xylene/ || w =~ /do/ }
 
     # Converts hash to array for use in .scrape_entry_pages.
     @words_defs_ary = @words_defs.to_a
