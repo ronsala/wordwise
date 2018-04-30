@@ -8,7 +8,7 @@ class Wordwise::CLI
     puts "WELCOME TO WORDWISE!\n".center(80)
     puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
     puts "Get ready to test your word wisdom....\n\n".center(80)
-    puts "What word list would you like to test your knowledge on?\n\n"
+    puts "What category would you like to test your knowledge on?\n\n"
     display_lists
   end
 
@@ -22,7 +22,7 @@ class Wordwise::CLI
   end
 
   def ask_list
-    puts "\nPlease enter the number of the list you want:\n"
+    puts "\nPlease enter the number of the category you want:\n"
     input = gets.strip.to_i
     size = Wordwise::Scraper.scrape_word_lists.size
     if input.between?(1, size)
@@ -81,15 +81,15 @@ class Wordwise::CLI
 
   # Display menu after user has answered a question.
   def ask_letter
-    puts "\nWord origin: 'o'. Next question: 'n'. Switch list: 's'. Exit: 'e'\n"
+    puts "\nWord origin: 'o'. Next question: 'n'. Change category: 'c'. Exit: 'e'\n"
     input = gets.strip.downcase
     case input
     when 'o'
       puts "\n#{@question.origin}\n\n"
-      ask_n_s_or_e
+      ask_n_c_or_e
     when 'n'
       play
-    when 's'
+    when 'c'
       display_lists
     when 'e'
       goodbye
@@ -99,18 +99,18 @@ class Wordwise::CLI
   end
 
   # Display menu after origin has been displayed.
-  def ask_n_s_or_e
-    puts "Next question: 'n'. Switch list: 's'. Exit game: 'e'\n"
+  def ask_n_c_or_e
+    puts "Next question: 'n'. Change category: 'c'. Exit game: 'e'\n"
     input = gets.strip.downcase
     case input
     when 'n'
       play
-    when 's'
+    when 'c'
       display_lists
     when 'e'
       goodbye
     else
-      ask_n_s_or_e
+      ask_n_c_or_e
     end
   end
 
