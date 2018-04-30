@@ -12,15 +12,16 @@ class Wordwise::CLI
     Wordwise::CLI.display_lists
   end
 
+  # Presents list of categories.
   def self.display_lists
     puts ''
-    # Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
     Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
       puts "     #{i + 1}) #{l}"
     end
     Wordwise::CLI.ask_list
   end
 
+  # Asks user for category selection.
   def self.ask_list
     puts "\nPlease enter the number of the category you want:\n"
     input = gets.strip.to_i
@@ -33,7 +34,7 @@ class Wordwise::CLI
     Wordwise::CLI.play
   end
 
-  # Display question and ask for answer.
+  # Displays question and asks for answer.
   def self.play
     puts "Loading question...\n\n"
     @question = Wordwise::Question.new
@@ -41,6 +42,7 @@ class Wordwise::CLI
     Wordwise::CLI.ask_no
   end
 
+  # Helper method for .play.
   def self.display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
@@ -118,6 +120,7 @@ class Wordwise::CLI
     end
   end
 
+  # Tells user questions are exhausted in category and gives options.
   def self.ask_c_or_e
     puts 'Sorry, no more questions available in category.'
     puts "Change category: 'c'. Exit: 'e'.\n"
@@ -132,7 +135,7 @@ class Wordwise::CLI
     end
   end
 
-  # Bid user farewell and end play.
+  # Bids user farewell and end play.
   def self.goodbye
     puts 'Thanks for playing WordWise! Please come again!'
   end
