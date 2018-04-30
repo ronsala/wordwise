@@ -13,8 +13,9 @@ class Wordwise::Scraper
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
       lists << html.css('.record h2')[i].text
     end
-    @list_urls.delete_if { |u| u =~ /phobias/ } # Removes list not fitting format
-    lists.delete_if { |l| l =~ /phobias/ } # Removes list not fitting format
+    # Removes list not fitting format.
+    @list_urls.delete_if { |u| u =~ /phobias/ }
+    lists.delete_if { |l| l =~ /phobias/ }
     lists
   end
 
@@ -38,9 +39,13 @@ class Wordwise::Scraper
     docs, word_urls, question_words, question_defs = [], [], [], []
 
     begin
-      # Samples from index 1 of array to avoid any column headings.
+      # Samples starting at index 1 of array to avoid any column headings.
       question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
-
+      # Prevents repetition of words in questions.
+      @words_defs_ary -= question_words_defs
+      if @words_defs_ary.size < 4
+        puts "Sorry, no more questions available in category. Enter 'c' to change category."
+      end
       question_words_defs.each_index do |i|
         question_words << question_words_defs[i][0]
         question_defs << question_words_defs[i][1]
