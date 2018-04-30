@@ -12,21 +12,6 @@ class Wordwise::CLI
     Wordwise::CLI.display_lists
   end
 
-  # def self.caser
-  #   input = gets.strip
-  #   case input
-  #   when '1'
-  #     @question.defs[0] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-  #   when '2'
-  #     @question.defs[1] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-  #   when '3'
-  #     @question.defs[2] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-  #   when '4'
-  #     @question.defs[3] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-  #   else
-  #     caller
-  # end
-
   # Presents list of categories.
   def self.display_lists
     puts ''
@@ -68,17 +53,16 @@ class Wordwise::CLI
   # Get definition number from user.
   def self.ask_no
     puts "Please enter a number 1-4:\n\n"
-    # input = gets.strip
-    # case input
-    # when '1'
-    #   @question.defs[0] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-    # when '2'
-    #   @question.defs[1] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-    # when '3'
-    #   @question.defs[2] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-    # when '4'
-    #   @question.defs[3] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
-    Wordwise::CLI.caser# and return
+    input = gets.strip
+    case input
+    when '1'
+      @question.defs[0] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+    when '2'
+      @question.defs[1] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+    when '3'
+      @question.defs[2] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+    when '4'
+      @question.defs[3] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
     else
       Wordwise::CLI.ask_no
     end
