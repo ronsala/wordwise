@@ -88,11 +88,7 @@ class Wordwise::CLI
     case input
     when 'o'
       puts "\n#{@question.origin}\n\n"
-<<<<<<< HEAD
-      ask_n_s_or_e
-=======
       Wordwise::CLI.ask_n_c_or_e
->>>>>>> workshop
     when 'n'
       Wordwise::CLI.play
     when 'c'
