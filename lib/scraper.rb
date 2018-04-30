@@ -50,10 +50,9 @@ class Wordwise::Scraper
 
       # Selects new word list when data missing.
       begin
-
         # Samples starting at index 1 of array to avoid any column headings.
         question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
-        
+
         # Prevents repetition of words in questions.
         @words_defs_ary.delete_if { |wd| wd == question_words_defs[0] }
 
@@ -75,7 +74,6 @@ class Wordwise::Scraper
 
         # Array is return value to be used in Question.
         [question_words, question_defs, origin]
-
       rescue NoMethodError => e
         scrape_entry_pages
       end
