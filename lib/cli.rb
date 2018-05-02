@@ -1,6 +1,5 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_reader :question
 
   # Display welcome message.
   def introduction
