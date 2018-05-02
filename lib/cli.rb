@@ -40,7 +40,7 @@ class Wordwise::CLI
     ask_no
   end
 
-  # Helper method for .play.
+  # Helper method for #play.
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
@@ -82,6 +82,23 @@ class Wordwise::CLI
   # Display menu after user has answered a question.
   def ask_letter
     puts "\nWord origin: 'o'. Next question: 'n'. Change category: 'c'. Exit: 'e'.\n"
+    case_letter
+  end
+
+  # Display menu after origin has been displayed.
+  def ask_n_c_or_e
+    puts "Next question: 'n'. Change category: 'c'. Exit game: 'e'\n"
+    case_letter
+  end
+
+  # Tells user questions are exhausted in category and gives options.
+  def ask_c_or_e
+    puts 'Sorry, no more questions available in category.'
+    puts "Change category: 'c'. Exit: 'e'.\n"
+    case_letter
+  end
+
+  def case_letter
     input = gets.strip.downcase
     case input
     when 'o'
@@ -95,37 +112,6 @@ class Wordwise::CLI
       goodbye
     else
       ask_letter
-    end
-  end
-
-  # Display menu after origin has been displayed.
-  def ask_n_c_or_e
-    puts "Next question: 'n'. Change category: 'c'. Exit game: 'e'\n"
-    input = gets.strip.downcase
-    case input
-    when 'n'
-      play
-    when 'c'
-      display_lists
-    when 'e'
-      goodbye
-    else
-      ask_n_c_or_e
-    end
-  end
-
-  # Tells user questions are exhausted in category and gives options.
-  def ask_c_or_e
-    puts 'Sorry, no more questions available in category.'
-    puts "Change category: 'c'. Exit: 'e'.\n"
-    input = gets.strip.downcase
-    case input
-    when 'c'
-      display_lists
-    when 'e'
-      goodbye
-    else
-      ask_c_or_e
     end
   end
 
