@@ -25,7 +25,7 @@ class Wordwise::CLI
 
   # Asks user for category selection.
   def ask_list
-    puts "\nPlease enter the number of the category you want:\n"
+    puts "Please enter the number of the category you want:"
     input = gets.strip.to_i
     size = Wordwise::Scraper.scrape_word_lists.size
     if input.between?(1, size)
@@ -38,7 +38,7 @@ class Wordwise::CLI
 
   # Displays question and asks for answer.
   def play
-    puts "Loading question...\n\n"
+    puts "\nLoading question...\n\n"
     @question = Wordwise::Question.new
     display_question
     ask_no
@@ -55,7 +55,7 @@ class Wordwise::CLI
 
   # Get definition number from user.
   def ask_no
-    puts "Please enter a number 1-4:\n\n"
+    puts "Please enter a number 1-4:"
     input = gets.strip
     case input
     when '1'
@@ -73,7 +73,7 @@ class Wordwise::CLI
 
   # Tell user they answered correctly and ask how they want to proceed.
   def correct
-    puts 'CORRECT!'
+    puts "\nCORRECT!"
     ask_letter
   end
 
@@ -163,6 +163,6 @@ class Wordwise::CLI
   end
 
   def exit
-    puts 'Please come again!'
+    puts "\nPlease come again!\n\n"
   end
 end
