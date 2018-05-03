@@ -73,7 +73,10 @@ class Wordwise::Scraper
           end
 
           # Sets variable for word origin.
-          origin = docs[0].css('.senseInnerWrapper p')[-1].text
+          origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
+          if origin_wrapper origin = origin_wrapper.text
+          binding.pry
+          end
           # Array is return value to be used in Question.
           [question_words, question_defs, origin]
       else
