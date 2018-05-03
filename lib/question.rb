@@ -12,8 +12,7 @@ class Wordwise::Question
     @def = question_array[1][0]
     @defs = question_array[1].shuffle
     @origin = question_array[2]
-    @@all << self
-    Wordwise::Question.all
+    @@all << self    # Wordwise::Question.all
   end
 
   def self.all
