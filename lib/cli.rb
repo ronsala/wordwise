@@ -150,6 +150,7 @@ class Wordwise::CLI
       puts wrap_indent("Origin: #{question.origin}")
     end
     puts ''
+    exit
   end
 
   # 
