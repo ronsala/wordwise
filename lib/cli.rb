@@ -54,6 +54,10 @@ class Wordwise::CLI
     ask_no
   end
 
+  def check_remaining
+   
+  end
+
   # Presents a question to the user.
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"

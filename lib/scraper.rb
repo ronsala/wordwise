@@ -49,16 +49,15 @@ class Wordwise::Scraper
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
     docs, word_urls, question_words, question_defs = [], [], [], []
-    begin
+    # Selects new word list when data missing.
+    # begin
       # Checks if there are enough unused words and definitions to form question.
-      #if @words_defs_ary.size >= 4
-      if @words_defs_ary.size >= 18 # T []
+      if @words_defs_ary.size >= 4
           # Samples starting at index 1 of array to avoid any column headings.
           question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
 
           # Prevents repetition of words in questions.
           @words_defs_ary.delete_if { |wd| wd == question_words_defs[0] }
-        # Selects new word list when data missing.
           # Iterates over array to make separate arrays for words and definitions.
           question_words_defs.each_index do |i|
             question_words << question_words_defs[i][0]
@@ -73,17 +72,18 @@ class Wordwise::Scraper
           end
 
           # Sets variable for word origin.
-          origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
-          if origin_wrapper origin = origin_wrapper.text
-          binding.pry
-          end
+          origin = docs[0].css('.senseInnerWrapper p')[-1].text
+          # origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
+          # if origin_wrapper origin = origin_wrapper.text
+          # binding.pry
+          # end
           # Array is return value to be used in Question.
           [question_words, question_defs, origin]
       else
         @@cli.ask_c_or_e
       end
-    rescue NoMethodError => e
-      Wordwise::Scraper.scrape_entry_pages
-    end
+    # rescue NoMethodError => e
+    #   Wordwise::Scraper.scrape_entry_pages
+    # end
   end
 end
