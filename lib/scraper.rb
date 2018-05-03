@@ -9,7 +9,6 @@ class Wordwise::Scraper
   def self.scrape_word_lists
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls, lists = [], []
-
     # Populates arrays of word list names and urls.
     (0..html.css('.record').size - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value

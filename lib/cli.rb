@@ -48,6 +48,10 @@ class Wordwise::CLI
     end
   end
 
+  def display_all
+    puts "\nWordwise::Question.all"
+  end
+
   # Get definition number from user.
   def ask_no
     puts "Please enter a number 1-4:\n\n"
@@ -115,8 +119,37 @@ class Wordwise::CLI
     end
   end
 
-  # Bids user farewell and end play.
   def goodbye
-    puts 'Thanks for playing WordWise! Please come again!'
+    puts "\nThanks for playing WordWise! Would you like to review the words and definitions from your session?"
+    case_y_n
+  end
+
+  # Bids user farewell and end play.
+  def case_y_n
+    puts "Yes: 'y'. No: 'n'.\n"
+    input = gets.strip.downcase
+    case input
+    when 'y'
+      display_review
+    when 'n'
+      exit
+    else
+      case_y_n
+    end
+  end
+
+  def display_review
+    Wordwise::Question.all.each_index do |i|
+      question = Wordwise::Question.all[i]
+      puts "\n'#{question.word}':"
+      puts "  #{question.def.capitalize}."
+      puts "  Origin:"
+      puts "  #{question.origin}"
+    end
+    puts ''
+  end
+
+  def exit
+    puts 'Please come again!'
   end
 end
