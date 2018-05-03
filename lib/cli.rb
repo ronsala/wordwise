@@ -1,12 +1,15 @@
 # Implements interface for user.
 class Wordwise::CLI
+
+  WIDTH = 80
+  
   # Display welcome message.
   def introduction
     puts ''
     puts "WELCOME TO WORDWISE!\n".center(80)
     puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
     puts "Get ready to test your word wisdom....\n\n".center(80)
-    puts "What category would you like to test your knowledge on?\n\n"
+    puts "What category would you like to test your knowledge on?\n"
     display_lists
   end
 
@@ -14,7 +17,8 @@ class Wordwise::CLI
   def display_lists
     puts ''
     Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
-      puts "     #{i + 1}) #{l}"
+      puts wrap_indent("#{i + 1}) #{l}")
+      puts ''
     end
     ask_list
   end
@@ -44,12 +48,9 @@ class Wordwise::CLI
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
-      puts "     #{i + 1}) #{@question.defs[i]}\n\n"
+      puts wrap_indent("#{i + 1}) #{@question.defs[i]}")
+      puts ''
     end
-  end
-
-  def display_all
-    puts "\nWordwise::Question.all"
   end
 
   # Get definition number from user.
@@ -79,7 +80,9 @@ class Wordwise::CLI
   # Tell user they answered incorrectly, give correct answer, and ask how they
   # want to proceed.
   def incorrect
-    puts "\nINCORRECT.\n\nCORRECT ANSWER:\n'#{@question.def}'\n"
+    puts "\nINCORRECT.\n\n"
+    puts 'CORRECT ANSWER:'
+    puts wrap_indent("'#{@question.def}'")
     ask_letter
   end
 
@@ -120,7 +123,8 @@ class Wordwise::CLI
   end
 
   def goodbye
-    puts "\nThanks for playing WordWise! Would you like to review the words and definitions from your session?"
+    puts wrap("\nThanks for playing WordWise! Would you like to review the words and definitions from your session?")
+    puts ''
     case_y_n
   end
 
@@ -142,11 +146,19 @@ class Wordwise::CLI
     Wordwise::Question.all.each_index do |i|
       question = Wordwise::Question.all[i]
       puts "\n'#{question.word}':"
-      puts "  #{question.def.capitalize}."
-      puts "  Origin:"
-      puts "  #{question.origin}"
+      puts wrap_indent("#{question.def.capitalize}.")
+      puts wrap_indent("Origin: #{question.origin}")
     end
     puts ''
+  end
+
+  # 
+  def wrap(str)
+    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "\\1\n")
+  end
+
+  def wrap_indent(str)
+    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "     \\1\n")
   end
 
   def exit
