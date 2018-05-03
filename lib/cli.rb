@@ -2,7 +2,7 @@
 class Wordwise::CLI
 
   WIDTH = 80
-  
+
   # Display welcome message.
   def introduction
     puts ''
@@ -21,6 +21,16 @@ class Wordwise::CLI
       puts ''
     end
     ask_list
+  end
+
+  # Wraps strings to format them prettily within the default page width.
+  def wrap(str)
+    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "\\1\n")
+  end
+
+  # As #wrap, with a five space left indent.
+  def wrap_indent(str)
+    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "     \\1\n")
   end
 
   # Asks user for category selection.
@@ -44,7 +54,7 @@ class Wordwise::CLI
     ask_no
   end
 
-  # Helper method for #play.
+  # Presents a question to the user.
   def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
@@ -77,8 +87,8 @@ class Wordwise::CLI
     ask_letter
   end
 
-  # Tell user they answered incorrectly, give correct answer, and ask how they
-  # want to proceed.
+  # Tells user they answered incorrectly, gives correct answer, and asks how to 
+  # proceed.
   def incorrect
     puts "\nINCORRECT.\n\n"
     puts 'CORRECT ANSWER:'
@@ -92,19 +102,7 @@ class Wordwise::CLI
     case_letter
   end
 
-  # Display menu after origin has been displayed.
-  def ask_n_c_or_e
-    puts "Next question: 'n'. Change category: 'c'. Exit game: 'e'\n"
-    case_letter
-  end
-
-  # Tells user questions are exhausted in category and gives options.
-  def ask_c_or_e
-    puts 'Sorry, no more questions available in category.'
-    puts "Change category: 'c'. Exit: 'e'.\n"
-    case_letter
-  end
-
+  # Initiates action based on user input.
   def case_letter
     input = gets.strip.downcase
     case input
@@ -120,6 +118,19 @@ class Wordwise::CLI
     else
       ask_letter
     end
+  end
+
+  # Displays menu after origin has been displayed.
+  def ask_n_c_or_e
+    puts "Next question: 'n'. Change category: 'c'. Exit game: 'e'\n"
+    case_letter
+  end
+
+  # Tells user questions are exhausted in category and gives options.
+  def ask_c_or_e
+    puts 'Sorry, no more questions available in category.'
+    puts "Change category: 'c'. Exit: 'e'.\n"
+    case_letter
   end
 
   def goodbye
@@ -151,15 +162,6 @@ class Wordwise::CLI
     end
     puts ''
     exit
-  end
-
-  # 
-  def wrap(str)
-    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "\\1\n")
-  end
-
-  def wrap_indent(str)
-    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "     \\1\n")
   end
 
   def exit

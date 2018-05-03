@@ -7,6 +7,8 @@ class Wordwise::Scraper
 
   # Scrapes page with list of word lists.
   def self.scrape_word_lists
+    Wordwise::CLI.ask_c_or_e
+
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls, lists = [], []
     # Populates arrays of word list names and urls.
