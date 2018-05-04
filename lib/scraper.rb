@@ -1,8 +1,6 @@
 # Scrapes web page containing word and the individual pages with their
 # definitions.
 class Wordwise::Scraper
-  attr_reader :list_urls
-  attr_accessor :cli
 
   BASEPATH = 'https://en.oxforddictionaries.com'
 

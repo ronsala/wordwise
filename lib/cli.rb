@@ -89,16 +89,10 @@ class Wordwise::CLI
     @question = Wordwise::Question.new
     display_question
     ask_no
-  end  
+  end
 
   def self.get_question_words
     @@question_words
-  end
-
-  def get_question_defs
-    @@question_words_defs.each_index do |i|
-      @@question_defs << question_words_defs[i][1]
-    end
   end
 
   def self.get_question_array
