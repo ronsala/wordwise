@@ -4,11 +4,6 @@ class Wordwise::Scraper
   attr_reader :list_urls
   attr_accessor :cli
 
-  def initialize
-    @@cli = Wordwise::CLI.new
-    @@cli.introduction
-  end
-
   BASEPATH = 'https://en.oxforddictionaries.com'
 
   # Scrapes page with list of word lists.

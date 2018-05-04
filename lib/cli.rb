@@ -68,6 +68,10 @@ class Wordwise::CLI
   def sample_words_defs
     # Samples starting at index 1 of array to avoid any column headings.
     @question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
+    puts "sample_words_defs: "
+    puts "@question_words_defs = #{@question_words_defs} "
+    puts ''
+    puts "@words_defs_ary = #{@words_defs_ary} "
     # Prevents repetition of words in questions.
     @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
     # binding.pry
@@ -107,6 +111,7 @@ class Wordwise::CLI
 
   def self.get_question_array
     origin = Wordwise::Scraper.scrape_entry_pages
+    puts "#{@@question_words}, #{@@question_defs}"
     [@@question_words, @@question_defs, origin]
     # binding.pry
   end
@@ -167,7 +172,8 @@ class Wordwise::CLI
       puts "\n#{@question.origin}\n\n"
       ask_n_c_or_e
     when 'n'
-      play
+      # play
+      check_remaining
     when 'c'
       display_lists
     when 'e'
