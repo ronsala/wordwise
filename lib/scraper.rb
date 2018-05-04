@@ -57,7 +57,7 @@ class Wordwise::Scraper
     if origin_wrapper
       origin = origin_wrapper.text
     else
-      origin = "Origin not available."
+      origin = 'Origin not available.'
     end
   end
 end

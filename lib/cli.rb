@@ -1,6 +1,5 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_accessor :question_words_defs
   WIDTH = 80
 
   # Display welcome message.
@@ -47,8 +46,8 @@ class Wordwise::CLI
   end
 
     # Checks if there are enough unused words and definitions to form question.
-    # Minumum size is set at 5 because sample method in #sample_words_defs is 
-    # not called on first item in array.
+    # Minumum size is set at 5 because sample method in #sample_words_defs
+    # is not called on first item in array.
     def check_remaining
       if @words_defs_ary.size >= 5
         sample_words_defs
@@ -74,7 +73,8 @@ class Wordwise::CLI
     set_question_defs
   end
 
-  # Iterates over array of words and definitions to make separate array of definitions.
+  # Iterates over array of words and definitions to make separate array of
+  # definitions.
   def set_question_defs
     @@question_defs = []
     @question_words_defs.each_index do |i|
@@ -119,7 +119,7 @@ class Wordwise::CLI
 
   # Get definition number from user.
   def ask_no
-    puts "Please enter a number 1-4:"
+    puts 'Please enter a number 1-4:'
     input = gets.strip
     case input
     when '1'

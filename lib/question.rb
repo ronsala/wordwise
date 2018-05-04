@@ -15,9 +15,6 @@ class Wordwise::Question
     @defs = question_array[1].shuffle
     @origin = question_array[2]
     @@all << self
-  # rescue NoMethodError => e
-  #   puts "out"
-  # end
   end
 
   def self.all
