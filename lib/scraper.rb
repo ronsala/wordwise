@@ -40,30 +40,24 @@ class Wordwise::Scraper
     @words_defs_ary = @words_defs.to_a
   end
 
-  # Samples 4 urls to words' pages and parse the question word, its origin and
+  # Samples 4 urls to words' pages and parses the question word, its origin and
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
     docs, word_urls = [], []
-    # Selects new word list when data missing.
-    # begin
     question_words = Wordwise::CLI.get_question_words
-          # Iterates over array to make array of urls that are parsed by Nokogiri
-          # and put in another array.
-          question_words.each_index do |i|
-            word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
-            docs << Nokogiri::HTML(open(word_urls[i]))
-          end
+    # Iterates over array to make array of urls that are parsed by Nokogiri
+    # and put in another array.
+    question_words.each_index do |i|
+      word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
+      docs << Nokogiri::HTML(open(word_urls[i]))
+    end
 
-          # Sets variable for word origin.
-          # origin = docs[0].css('.senseInnerWrapper p')[-1].text
-          origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
-          if origin_wrapper origin = origin_wrapper.text
-          # binding.pry
-          else
-            origin = "Origin not available."
-          end
-    # rescue NoMethodError => e
-    #   Wordwise::Scraper.scrape_entry_pages
-    # end
+    # Sets variable for word origin.
+    origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
+    if origin_wrapper
+      origin = origin_wrapper.text
+    else
+      origin = "Origin not available."
+    end
   end
 end
