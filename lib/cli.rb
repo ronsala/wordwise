@@ -2,7 +2,7 @@
 class Wordwise::CLI
   attr_accessor :question_words_defs
   WIDTH = 80
-  @@question_words, @@question_defs = [], []
+  # @@question_words, @@question_defs = [], []
 
   # Display welcome message.
   def introduction
@@ -68,10 +68,10 @@ class Wordwise::CLI
   def sample_words_defs
     # Samples starting at index 1 of array to avoid any column headings.
     @question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
-    puts "sample_words_defs: "
-    puts "@question_words_defs = #{@question_words_defs} "
-    puts ''
-    puts "@words_defs_ary = #{@words_defs_ary} "
+    # puts "sample_words_defs: "
+    # puts "@question_words_defs = #{@question_words_defs} "
+    # puts ''
+    # puts "@words_defs_ary = #{@words_defs_ary} "
     # Prevents repetition of words in questions.
     @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
     # binding.pry
@@ -80,6 +80,7 @@ class Wordwise::CLI
 
   # Iterates over array of words and definitions to make separate array of words.
   def set_question_words
+    @@question_words = []
     @question_words_defs.each_index do |i|
       @@question_words << @question_words_defs[i][0]
     end
@@ -88,6 +89,7 @@ class Wordwise::CLI
 
   # Iterates over array of words and definitions to make separate array of definitions.
   def set_question_defs
+    @@question_defs = []
     @question_words_defs.each_index do |i|
       @@question_defs << @question_words_defs[i][1]
     end
@@ -111,9 +113,8 @@ class Wordwise::CLI
 
   def self.get_question_array
     origin = Wordwise::Scraper.scrape_entry_pages
-    puts "#{@@question_words}, #{@@question_defs}"
+    # Array is return value to be used in Question.
     [@@question_words, @@question_defs, origin]
-    # binding.pry
   end
 
   # Presents a question to the user.
