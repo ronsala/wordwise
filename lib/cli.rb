@@ -2,7 +2,6 @@
 class Wordwise::CLI
   attr_accessor :question_words_defs
   WIDTH = 80
-  # @@question_words, @@question_defs = [], []
 
   # Display welcome message.
   def introduction
@@ -105,11 +104,6 @@ class Wordwise::CLI
       @@question_defs << question_words_defs[i][1]
     end
   end
-
-  # def self.get_origin
-  #   @@origin = 'bob'
-  #   binding.pry
-  # end
 
   def self.get_question_array
     origin = Wordwise::Scraper.scrape_entry_pages

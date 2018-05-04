@@ -55,13 +55,13 @@ class Wordwise::Scraper
           end
 
           # Sets variable for word origin.
-          origin = docs[0].css('.senseInnerWrapper p')[-1].text
-          # # origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
-          # # if origin_wrapper origin = origin_wrapper.text
-          # # binding.pry
-          # # end
-          # # Array is return value to be used in Question.
-
+          # origin = docs[0].css('.senseInnerWrapper p')[-1].text
+          origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
+          if origin_wrapper origin = origin_wrapper.text
+          # binding.pry
+          else
+            origin = "Origin not available."
+          end
     # rescue NoMethodError => e
     #   Wordwise::Scraper.scrape_entry_pages
     # end
