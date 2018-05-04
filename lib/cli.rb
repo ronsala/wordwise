@@ -44,36 +44,24 @@ class Wordwise::CLI
     else
       ask_list
     end
-    # play
   end
 
     # Checks if there are enough unused words and definitions to form question.
+    # Minumum size is set at 5 because sample method in #sample_words_defs is 
+    # not called on first item in array.
     def check_remaining
-      if @words_defs_ary.size >= 4
+      if @words_defs_ary.size >= 5
         sample_words_defs
       else
         ask_c_or_e
       end
   end
 
-  # Displays question and asks for answer.
-  def play
-    puts "\nLoading question...\n\n"
-    @question = Wordwise::Question.new
-    display_question
-    ask_no
-  end
-
   def sample_words_defs
     # Samples starting at index 1 of array to avoid any column headings.
     @question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
-    # puts "sample_words_defs: "
-    # puts "@question_words_defs = #{@question_words_defs} "
-    # puts ''
-    # puts "@words_defs_ary = #{@words_defs_ary} "
     # Prevents repetition of words in questions.
-    @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
-    # binding.pry
+    # @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
     set_question_words
   end
 
@@ -94,6 +82,14 @@ class Wordwise::CLI
     end
     play
   end
+
+  # Displays question and asks for answer.
+  def play
+    puts "\nLoading question...\n\n"
+    @question = Wordwise::Question.new
+    display_question
+    ask_no
+  end  
 
   def self.get_question_words
     @@question_words
@@ -118,6 +114,7 @@ class Wordwise::CLI
       puts wrap_indent("#{i + 1}) #{@question.defs[i]}")
       puts ''
     end
+    @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
   end
 
   # Get definition number from user.
@@ -167,7 +164,6 @@ class Wordwise::CLI
       puts "\n#{@question.origin}\n\n"
       ask_n_c_or_e
     when 'n'
-      # play
       check_remaining
     when 'c'
       display_lists
