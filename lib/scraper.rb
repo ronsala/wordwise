@@ -1,7 +1,6 @@
 # Scrapes web page containing word and the individual pages with their
 # definitions.
 class Wordwise::Scraper
-  attr_reader :list_urls
 
   BASEPATH = 'https://en.oxforddictionaries.com'
 
@@ -9,7 +8,6 @@ class Wordwise::Scraper
   def self.scrape_word_lists
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls, lists = [], []
-
     # Populates arrays of word list names and urls.
     (0..html.css('.record').size - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
@@ -40,45 +38,24 @@ class Wordwise::Scraper
     @words_defs_ary = @words_defs.to_a
   end
 
-  # Samples 4 urls to words' pages and parse the question word, its origin and
+  # Samples 4 urls to words' pages and parses the question word, its origin and
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
-    docs, word_urls, question_words, question_defs = [], [], [], []
+    docs, word_urls = [], []
+    question_words = Wordwise::CLI.get_question_words
+    # Iterates over array to make array of urls that are parsed by Nokogiri
+    # and put in another array.
+    question_words.each_index do |i|
+      word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
+      docs << Nokogiri::HTML(open(word_urls[i]))
+    end
 
-    # Checks if there are enough unused words and definitions to form question.
-    if @words_defs_ary.size >= 4
-
-      # Selects new word list when data missing.
-      begin
-        # Samples starting at index 1 of array to avoid any column headings.
-        question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
-
-        # Prevents repetition of words in questions.
-        @words_defs_ary.delete_if { |wd| wd == question_words_defs[0] }
-
-        # Iterates over array to make separate arrays for words and definitions.
-        question_words_defs.each_index do |i|
-          question_words << question_words_defs[i][0]
-          question_defs << question_words_defs[i][1]
-        end
-
-        # Iterates over array to make array of urls that are parsed by Nokogiri
-        # and put in another array.
-        question_words.each_index do |i|
-          word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
-          docs << Nokogiri::HTML(open(word_urls[i]))
-        end
-
-        # Sets variable for word origin.
-        origin = docs[0].css('.senseInnerWrapper p')[-1].text
-
-        # Array is return value to be used in Question.
-        [question_words, question_defs, origin]
-      rescue NoMethodError => e
-        scrape_entry_pages
-      end
+    # Sets variable for word origin.
+    origin_wrapper = docs[0].css('.senseInnerWrapper p')[-1]
+    if origin_wrapper
+      origin = origin_wrapper.text
     else
-      Wordwise::CLI.ask_c_or_e
+      origin = 'Origin not available.'
     end
   end
 end

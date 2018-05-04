@@ -1,6 +1,6 @@
 # Implements interface for user.
 class Wordwise::CLI
-  attr_reader :question
+  WIDTH = 80
 
   # Display welcome message.
   def introduction
@@ -8,131 +8,211 @@ class Wordwise::CLI
     puts "WELCOME TO WORDWISE!\n".center(80)
     puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
     puts "Get ready to test your word wisdom....\n\n".center(80)
-    puts "What category would you like to test your knowledge on?\n\n"
-    Wordwise::CLI.display_lists
+    puts "What category would you like to test your knowledge on?\n"
+    display_lists
   end
 
   # Presents list of categories.
-  def self.display_lists
+  def display_lists
     puts ''
     Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
-      puts "     #{i + 1}) #{l}"
+      puts wrap_indent("#{i + 1}) #{l}")
+      puts ''
     end
-    Wordwise::CLI.ask_list
+    ask_list
+  end
+
+  # Wraps strings to format them prettily within the default page width.
+  def wrap(str)
+    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "\\1\n")
+  end
+
+  # As #wrap, with a five space left indent.
+  def wrap_indent(str)
+    str.gsub(/(.{1,#{WIDTH}})(\s+|\Z)/, "     \\1\n")
   end
 
   # Asks user for category selection.
-  def self.ask_list
-    puts "\nPlease enter the number of the category you want:\n"
+  def ask_list
+    puts "Please enter the number of the category you want:"
     input = gets.strip.to_i
     size = Wordwise::Scraper.scrape_word_lists.size
     if input.between?(1, size)
-      Wordwise::Scraper.scrape_word_list(input - 1)
+      @words_defs_ary = Wordwise::Scraper.scrape_word_list(input - 1)
+      check_remaining
     else
-      Wordwise::CLI.ask_list
+      ask_list
     end
-    Wordwise::CLI.play
+  end
+
+    # Checks if there are enough unused words and definitions to form question.
+    # Minumum size is set at 5 because sample method in #sample_words_defs
+    # is not called on first item in array.
+    def check_remaining
+      if @words_defs_ary.size >= 5
+        sample_words_defs
+      else
+        ask_c_or_e
+      end
+  end
+
+  def sample_words_defs
+    # Samples starting at index 1 of array to avoid any column headings.
+    @question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
+    # Prevents repetition of words in questions.
+    # @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
+    set_question_words
+  end
+
+  # Iterates over array of words and definitions to make separate array of words.
+  def set_question_words
+    @@question_words = []
+    @question_words_defs.each_index do |i|
+      @@question_words << @question_words_defs[i][0]
+    end
+    set_question_defs
+  end
+
+  # Iterates over array of words and definitions to make separate array of
+  # definitions.
+  def set_question_defs
+    @@question_defs = []
+    @question_words_defs.each_index do |i|
+      @@question_defs << @question_words_defs[i][1]
+    end
+    play
   end
 
   # Displays question and asks for answer.
-  def self.play
-    puts "Loading question...\n\n"
+  def play
+    puts "\nLoading question...\n\n"
     @question = Wordwise::Question.new
-    Wordwise::CLI.display_question
-    Wordwise::CLI.ask_no
+    display_question
+    ask_no
   end
 
-  # Helper method for .play.
-  def self.display_question
+  def self.get_question_words
+    @@question_words
+  end
+
+  def self.get_question_array
+    origin = Wordwise::Scraper.scrape_entry_pages
+    # Array is return value to be used in Question.
+    [@@question_words, @@question_defs, origin]
+  end
+
+  # Presents a question to the user.
+  def display_question
     puts "\nWhat does '#{@question.word}' mean?\n\n"
     (0..3).each do |i|
-      puts "     #{i + 1}) #{@question.defs[i]}\n\n"
+      puts wrap_indent("#{i + 1}) #{@question.defs[i]}")
+      puts ''
     end
+    @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
   end
 
   # Get definition number from user.
-  def self.ask_no
-    puts "Please enter a number 1-4:\n\n"
+  def ask_no
+    puts 'Please enter a number 1-4:'
     input = gets.strip
     case input
     when '1'
-      @question.defs[0] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+      @question.defs[0] == @question.def ? correct : incorrect
     when '2'
-      @question.defs[1] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+      @question.defs[1] == @question.def ? correct : incorrect
     when '3'
-      @question.defs[2] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+      @question.defs[2] == @question.def ? correct : incorrect
     when '4'
-      @question.defs[3] == @question.def ? Wordwise::CLI.correct : Wordwise::CLI.incorrect
+      @question.defs[3] == @question.def ? correct : incorrect
     else
-      Wordwise::CLI.ask_no
+      ask_no
     end
   end
 
   # Tell user they answered correctly and ask how they want to proceed.
-  def self.correct
-    puts 'CORRECT!'
-    Wordwise::CLI.ask_letter
+  def correct
+    puts "\nCORRECT!"
+    ask_letter
   end
 
-  # Tell user they answered incorrectly, give correct answer, and ask how they
-  # want to proceed.
-  def self.incorrect
-    puts "\nINCORRECT.\n\nCORRECT ANSWER:\n'#{@question.def}'\n"
-    Wordwise::CLI.ask_letter
+  # Tells user they answered incorrectly, gives correct answer, and asks how to 
+  # proceed.
+  def incorrect
+    puts "\nINCORRECT.\n\n"
+    puts 'CORRECT ANSWER:'
+    puts wrap_indent("'#{@question.def}'")
+    ask_letter
   end
 
   # Display menu after user has answered a question.
-  def self.ask_letter
+  def ask_letter
     puts "\nWord origin: 'o'. Next question: 'n'. Change category: 'c'. Exit: 'e'.\n"
+    case_letter
+  end
+
+  # Initiates action based on user input.
+  def case_letter
     input = gets.strip.downcase
     case input
     when 'o'
       puts "\n#{@question.origin}\n\n"
-      Wordwise::CLI.ask_n_c_or_e
+      ask_n_c_or_e
     when 'n'
-      Wordwise::CLI.play
+      check_remaining
     when 'c'
-      Wordwise::CLI.display_lists
+      display_lists
     when 'e'
-      Wordwise::CLI.goodbye
+      goodbye
     else
-      Wordwise::CLI.ask_letter
+      ask_letter
     end
   end
 
-  # Display menu after origin has been displayed.
-  def self.ask_n_c_or_e
+  # Displays menu after origin has been displayed.
+  def ask_n_c_or_e
     puts "Next question: 'n'. Change category: 'c'. Exit game: 'e'\n"
-    input = gets.strip.downcase
-    case input
-    when 'n'
-      play
-    when 'c'
-      Wordwise::CLI.display_lists
-    when 'e'
-      Wordwise::CLI.goodbye
-    else
-      Wordwise::CLI.ask_n_c_or_e
-    end
+    case_letter
   end
 
   # Tells user questions are exhausted in category and gives options.
-  def self.ask_c_or_e
+  def ask_c_or_e
     puts 'Sorry, no more questions available in category.'
     puts "Change category: 'c'. Exit: 'e'.\n"
-    input = gets.strip.downcase
-    case input
-    when 'c'
-      Wordwise::CLI.display_lists
-    when 'e'
-      Wordwise::CLI.goodbye
-    else
-      Wordwise::CLI.ask_c_or_e
-    end
+    case_letter
+  end
+
+  def goodbye
+    puts wrap("\nThanks for playing WordWise! Would you like to review the words and definitions from your session?")
+    puts ''
+    case_y_n
   end
 
   # Bids user farewell and end play.
-  def self.goodbye
-    puts 'Thanks for playing WordWise! Please come again!'
+  def case_y_n
+    puts "Yes: 'y'. No: 'n'.\n"
+    input = gets.strip.downcase
+    case input
+    when 'y'
+      display_review
+    when 'n'
+      exit
+    else
+      case_y_n
+    end
+  end
+
+  def display_review
+    Wordwise::Question.all.each_index do |i|
+      question = Wordwise::Question.all[i]
+      puts "\n'#{question.word}':"
+      puts wrap_indent("#{question.def.capitalize}.")
+      puts wrap_indent("Origin: #{question.origin}")
+    end
+    puts ''
+    exit
+  end
+
+  def exit
+    puts "\nPlease come again!\n\n"
   end
 end
