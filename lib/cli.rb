@@ -60,7 +60,7 @@ class Wordwise::CLI
     # Samples starting at index 1 of array to avoid any column headings.
     @question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
     # Prevents repetition of words in questions.
-    # @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
+    @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
     set_question_words
   end
 
