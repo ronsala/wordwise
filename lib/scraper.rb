@@ -2,7 +2,7 @@
 # definitions.
 class Wordwise::Scraper
 
-  BASEPATH = 'https://en.oxforddictionaries.com' #[WT]
+  BASEPATH = 'https://en.oxforddictionaries.com'
 
   # Scrapes page with list of word lists.
   def self.scrape_word_lists
