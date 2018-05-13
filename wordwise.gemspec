@@ -8,7 +8,7 @@ require 'nokogiri'
 Gem::Specification.new do |spec|
   spec.name          = "wordwise"
   spec.version       = Wordwise::VERSION
-  spec.authors       = ["RonSala"]
+  spec.authors       = ["Ron Sala"]
   spec.email         = ["ron.sala@gmail.com"]
 
   spec.summary       = %q{A quiz game. Challenge your vocabulary!}
