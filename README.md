@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-On starting, WordWise will choose a word and several definitions, one of which is correct. (This process may take a few seconds). Once you've made your choice, type the corresponding number and hit 'enter'. WordWise will tell you if you're correct and, if not, the correct definition. Type 'o' and 'enter' to see the word's origin (etymology) or 'n' and 'enter' for the next question. To exit the game, type 'e' and 'enter'.
+Start the program in your terminal with "ruby bin/wordise". On starting, WordWise will choose a word and several definitions, one of which is correct. (This process may take a few seconds). Once you've made your choice, type the corresponding number and hit 'enter'. WordWise will tell you if you're correct and, if not, the correct definition. Type 'o' and 'enter' to see the word's origin (etymology) or 'n' and 'enter' for the next question. To exit the game, type 'e' and 'enter'.
 
 ## Development
 
