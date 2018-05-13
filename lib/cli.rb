@@ -12,10 +12,9 @@ class Wordwise::CLI
     list
   end
 
-
+  # Checks if @lists is populated. If not, calls .scrape_word_lists and populates it.
+  # Otherwise, call display_list and pass in the list.
   def list
-    # Check if @lists is populated if not, call scrape word lists and populate it.
-    # Otherwise, call display_list and pass in the list
     @list ||= Wordwise::Scraper.scrape_word_lists
     puts ''
     display_list
@@ -64,8 +63,8 @@ class Wordwise::CLI
     end
   end
 
+  # Samples starting at index 1 of array to avoid any column headings.
   def sample_words_defs
-    # Samples starting at index 1 of array to avoid any column headings.
     @question_words_defs = @words_defs_ary[1..@words_defs_ary.size - 1].sample(4)
     # Prevents repetition of words in questions.
     @words_defs_ary.delete_if { |wd| wd == @question_words_defs[0] }
@@ -103,9 +102,9 @@ class Wordwise::CLI
     @@question_words
   end
 
+  # Array is return value to be used in Question.
   def self.question_array
     origin = Wordwise::Scraper.scrape_entry_pages
-    # Array is return value to be used in Question.
     [@@question_words, @@question_defs, origin]
   end
 
@@ -209,6 +208,7 @@ class Wordwise::CLI
     end
   end
 
+  # Presents main words, their definitions and origins from session.
   def display_review
     Wordwise::Question.all.each_index do |i|
       question = Wordwise::Question.all[i]
