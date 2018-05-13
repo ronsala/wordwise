@@ -42,7 +42,7 @@ class Wordwise::Scraper
   # definition, and 3 more definitions.
   def self.scrape_entry_pages
     docs, word_urls = [], []
-    question_words = Wordwise::CLI.get_question_words
+    question_words = Wordwise::CLI.question_words
     # Iterates over array to make array of urls that are parsed by Nokogiri
     # and put in another array.
     question_words.each_index do |i|

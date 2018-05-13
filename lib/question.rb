@@ -7,7 +7,7 @@ class Wordwise::Question
 
   # Set instance variables for Question objects.
   def initialize
-    question_array = Wordwise::CLI.get_question_array
+    question_array = Wordwise::CLI.question_array
     @word = question_array[0][0]
     @def = question_array[1][0]
     @defs = question_array[1].shuffle
@@ -15,7 +15,8 @@ class Wordwise::Question
     @@all << self
   end
 
-  def self.all
+  def self.all 
     @@all
   end
+
 end

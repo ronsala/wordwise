@@ -9,13 +9,21 @@ class Wordwise::CLI
     puts "You can learn more about the words in this quiz at https://www.oxforddictionaries.com.\n\n".center(80)
     puts "Get ready to test your word wisdom....\n\n".center(80)
     puts "What category would you like to test your knowledge on?\n"
-    display_lists
+    list
+  end
+
+
+  def list
+    # Check if @lists is populated if not, call scrape word lists and populate it.
+    # Otherwise, call display_list and pass in the list
+    @list ||= Wordwise::Scraper.scrape_word_lists
+    puts ''
+    display_list
   end
 
   # Presents list of categories.
-  def display_lists
-    puts ''
-    Wordwise::Scraper.scrape_word_lists.each_with_index do |l, i|
+  def display_list 
+    @list.each_with_index do |l, i|
       puts wrap_indent("#{i + 1}) #{l}")
       puts ''
     end
@@ -45,15 +53,15 @@ class Wordwise::CLI
     end
   end
 
-    # Checks if there are enough unused words and definitions to form question.
-    # Minumum size is set at 5 because sample method in #sample_words_defs
-    # is not called on first item in array.
-    def check_remaining
-      if @words_defs_ary.size >= 5
-        sample_words_defs
-      else
-        ask_c_or_e
-      end
+  # Checks if there are enough unused words and definitions to form question.
+  # Minumum size is set at 5 because sample method in #sample_words_defs
+  # is not called on first item in array.
+  def check_remaining
+    if @words_defs_ary.size >= 5
+      sample_words_defs
+    else
+      ask_c_or_e
+    end
   end
 
   def sample_words_defs
@@ -91,11 +99,11 @@ class Wordwise::CLI
     ask_no
   end
 
-  def self.get_question_words
+  def self.question_words
     @@question_words
   end
 
-  def self.get_question_array
+  def self.question_array
     origin = Wordwise::Scraper.scrape_entry_pages
     # Array is return value to be used in Question.
     [@@question_words, @@question_defs, origin]
@@ -160,7 +168,7 @@ class Wordwise::CLI
     when 'n'
       check_remaining
     when 'c'
-      display_lists
+      display_list
     when 'e'
       goodbye
     else
