@@ -1,6 +1,8 @@
 # Wordwise
 
-A quiz game. Challenge your vocabulary! Given a random word, choose the correct definition from a list. Option to see word origin.}
+A quiz game. Challenge your vocabulary! Given a random word, choose the correct definition from a list. Option to see word origin.
+
+You can read a blog post about the writing of this gem at <https://ronsala.net/makefile_002_cli_data_gem--notes_to_a_junior_to_me_dev.>
 
 ## Installation
 
@@ -20,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Start the program in your terminal with "ruby bin/wordise". On starting, WordWise will choose a word and several definitions, one of which is correct. (This process may take a few seconds). Once you've made your choice, type the corresponding number and hit 'enter'. WordWise will tell you if you're correct and, if not, the correct definition. Type 'o' and 'enter' to see the word's origin (etymology) or 'n' and 'enter' for the next question. To exit the game, type 'e' and 'enter'. Watch a video demo at https://bit.ly/2Kz8zgX.
+Start the program in your terminal with "ruby bin/wordise". On starting, WordWise will choose a word and several definitions, one of which is correct. (This process may take a few seconds). Once you've made your choice, type the corresponding number and hit 'enter'. WordWise will tell you if you're correct and, if not, the correct definition. Type 'o' and 'enter' to see the word's origin (etymology) or 'n' and 'enter' for the next question. To exit the game, type 'e' and 'enter'. Watch a video demo at <https://bit.ly/2Kz8zgX>.
 
 ## Development
 
