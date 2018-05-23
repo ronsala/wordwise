@@ -2,7 +2,7 @@
 
 A quiz game. Challenge your vocabulary! Given a random word, choose the correct definition from a list. Option to see word origin.
 
-You can read a blog post about the writing of this gem at <https://ronsala.net/makefile_002_cli_data_gem--notes_to_a_junior_to_me_dev.>
+You can read a blog post about the writing of this gem at <https://ronsala.net/makefile_002_cli_data_gem--notes_to_a_junior_to_me_dev>.
 
 ## Installation
 
