@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-Start the program in your terminal with "ruby bin/wordise". On starting, WordWise will choose a word and several definitions, one of which is correct. (This process may take a few seconds). Once you've made your choice, type the corresponding number and hit 'enter'. WordWise will tell you if you're correct and, if not, the correct definition. Type 'o' and 'enter' to see the word's origin (etymology) or 'n' and 'enter' for the next question. To exit the game, type 'e' and 'enter'. Watch a video demo at <https://bit.ly/2Kz8zgX>.
+Start the program in your terminal with "ruby bin/wordwise". On starting, WordWise will choose a word and several definitions, one of which is correct. (This process may take a few seconds). Once you've made your choice, type the corresponding number and hit 'enter'. WordWise will tell you if you're correct and, if not, the correct definition. Type 'o' and 'enter' to see the word's origin (etymology) or 'n' and 'enter' for the next question. To exit the game, type 'e' and 'enter'. Watch a video demo at <https://bit.ly/2Kz8zgX>.
 
 ## Development
 
@@ -41,5 +41,3 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the Wordwise project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/ronsala/wordwise/blob/master/CODE_OF_CONDUCT.md).
-=======
-# wordwise
