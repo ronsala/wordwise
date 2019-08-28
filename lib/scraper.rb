@@ -22,6 +22,7 @@ class Wordwise::Scraper
 
   # Scrapes a page with a word list.
   def self.scrape_word_list(page_idx)
+    binding.pry
     doc = Nokogiri::HTML(open(@list_urls[page_idx]))
     @words_defs = {}
 

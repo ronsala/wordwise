@@ -41,10 +41,12 @@ class Wordwise::CLI
 
   # Asks user for category selection.
   def ask_list
+    # binding.pry
     puts "Please enter the number of the category you want:"
     input = gets.strip.to_i
     size = Wordwise::Scraper.scrape_word_lists.size
     if input.between?(1, size)
+      # binding.pry
       @words_defs_ary = Wordwise::Scraper.scrape_word_list(input - 1)
       check_remaining
     else
