@@ -8,6 +8,7 @@ class Wordwise::Scraper
   def self.scrape_word_lists
     html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
     @list_urls, lists = [], []
+
     # Populates arrays of word list names and urls.
     (0..html.css('.record').size - 1).each do |i|
       @list_urls << BASEPATH + html.css('.record a')[i].attribute('href').value
@@ -16,13 +17,14 @@ class Wordwise::Scraper
 
     # Removes list not fitting format.
     @list_urls.delete_if { |u| u =~ /phobias/ }
-    lists.delete_if { |l| l =~ /phobias/ }
+    lists.delete_if { |l| l =~ /Phobias/ }
+
     lists
   end
 
   # Scrapes a page with a word list.
   def self.scrape_word_list(page_idx)
-    binding.pry
+    
     doc = Nokogiri::HTML(open(@list_urls[page_idx]))
     @words_defs = {}
 
