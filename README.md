@@ -4,6 +4,8 @@ A quiz game. Challenge your vocabulary! Given a random word, choose the correct 
 
 You can read a blog post about the writing of this gem at <https://ronsala.net/makefile_002_cli_data_gem--notes_to_a_junior_to_me_dev>.
 
+*Not affiliated with Dictionary.com or Oxford University Press.*
+
 ## Installation
 
 Add this line to your application's Gemfile:
