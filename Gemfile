@@ -6,6 +6,6 @@ gem 'bundler'
 gem 'rake'
 gem 'pry'
 gem 'require_all'
-gem "nokogiri", ">= 1.10.4"
+gem "nokogiri", ">= 1.10.8"
 # Specify your gem's dependencies in wordwise.gemspec
 gemspec

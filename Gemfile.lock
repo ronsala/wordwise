@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wordwise (1.0.2)
+    wordwise (1.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -36,7 +36,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  nokogiri (>= 1.10.4)
+  nokogiri (>= 1.10.8)
   pry
   rake
   require_all

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+
+Updated nokogiri and rake.
+
+Fixed installation issue.
 ## 1.0.1
 
 Fixed installation issue.
