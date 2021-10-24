@@ -98,3 +98,8 @@ Bumped racc from 1.5.2 to 1.6.0.
 Bumped bundler from 2.0.2 to 2.2.29. As a consequence, the Dependabot alert about it has been removed.
 
 Found `rspec spec` leads to passing test.
+
+Tried getting CircleCI to work but getting `config.yml is not valid`. Looks like I need an "executor" and Docker fits the bill.
+
+Went to [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/) and am following instructions.
+
