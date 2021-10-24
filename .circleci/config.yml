@@ -1,1 +1,18 @@
 version: 2.1
+orbs:
+  gem: zfhui/ruby-gem@0.2.1
+jobs:
+  test:
+    working_directory: ~/repo
+    executor:
+      name: gem/default
+      tag: 2.6.3
+    steps:
+      - gem/setup-and-test:
+          gemspec: wordwise.gemspec
+          bundler-version: 2.2.29
+# Orchestrate our job run sequence
+workflows:
+  build_and_test:
+    jobs:
+      - test
