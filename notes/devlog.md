@@ -95,4 +95,5 @@ Sun Oct 24 16:41:45 EDT 2021
 
 Bumped racc from 1.5.2 to 1.6.0.
 
-Bumped bundler from 2.0.2 to 2.2.29.
+Bumped bundler from 2.0.2 to 2.2.29. As a consequence, the Dependabot alert about it has been removed.
+
