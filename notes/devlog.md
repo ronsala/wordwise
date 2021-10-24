@@ -90,3 +90,9 @@ Now setting up Codecov though GitHub and writing a blog post about it.
 Tue Oct 19 19:21:29 EDT 2021
 
 Working on setting up CircleCI. Reading the [docs](https://circleci.com/docs/). Found a promising orb, [ruby-gem@0.2.1](https://circleci.com/developer/orbs/orb/zfhui/ruby-gem?utm_source=google&utm_medium=sem&utm_campaign=sem-google-dg--uscan-en-dsa-maxConv-auth-brand&utm_term=g_b-_c__dsa_&utm_content=&gclid=CjwKCAjw2bmLBhBREiwAZ6ugo5wGiuvzqbtVF5VmMVDdAAoRK9Ikg0qUrJh3chk_mRCGWaDQDK9aBxoCwb0QAvD_BwE).
+
+Sun Oct 24 16:41:45 EDT 2021
+
+Bumped racc from 1.5.2 to 1.6.0.
+
+Bumped bundler from 2.0.2 to 2.2.29.
