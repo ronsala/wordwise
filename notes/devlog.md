@@ -103,3 +103,4 @@ Tried getting CircleCI to work but getting `config.yml is not valid`. Looks like
 
 Went to [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/) and am following instructions.
 
+Trying to set up Docker. Will do a pull request with this added sentence to test.
