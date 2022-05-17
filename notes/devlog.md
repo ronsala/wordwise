@@ -148,3 +148,26 @@ Using rspec 3.10.0
 Using wordwise 1.0.3 from source at `.`
 Bundle updated!
 ```
+
+```zsh
+RONALDs-MacBook-Pro-2 dev/wordwise ‹workshop› » bcm "bump version from 1.0.3 to 1.0.4"
+```
+
+Added to gemspec: `add_runtime_dependency 'bundler', '~> 2.2', '>= 2.2.10'`.
+
+```zsh
+RONALDs-MacBook-Pro-2 dev/wordwise ‹workshop*› » gem build wordwise.gemspec
+  Successfully built RubyGem
+  Name: wordwise
+  Version: 1.0.4
+  File: wordwise-1.0.4.gem
+RONALDs-MacBook-Pro-2 dev/wordwise ‹workshop*› » gem push wordwise-1.0.4.gem
+Pushing gem to https://rubygems.org...
+You have enabled multi-factor authentication. Please enter OTP code.
+Code:   674233
+Successfully registered gem: wordwise (1.0.4)
+```
+
+Deleted local copy of gem.
+
+Next, continue with CI/CD issues.
