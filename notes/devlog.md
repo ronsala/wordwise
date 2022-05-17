@@ -104,3 +104,47 @@ Tried getting CircleCI to work but getting `config.yml is not valid`. Looks like
 Went to [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/) and am following instructions.
 
 Trying to set up Docker. Will do a pull request with this added sentence to test.
+
+## 20220517
+
+Switched to new date format for this log.
+
+Pulled in a PR from Dependabot concerning a security vulnerability with nokogiri.
+
+Changed the BASEURL to the new lexico domain, eliminating the need for a redirect.
+
+Added `URI.` before each call to `open` when scraping, eliminating `No such file or directory @ rb_sysopen` errors.
+
+Got rid of `Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.` when starting app by updating bundler:
+
+```zsh
+RONALDs-MacBook-Pro-2 dev/wordwise ‹workshop› » bundler -v
+Calling `DidYouMean::SPELL_CHECKERS.merge!(error_name => spell_checker)' has been deprecated. Please call `DidYouMean.correct_error(error_name, spell_checker)' instead.
+Bundler version 2.2.29
+RONALDs-MacBook-Pro-2 dev/wordwise ‹workshop› » gem install bundler
+Fetching bundler-2.3.13.gem
+Successfully installed bundler-2.3.13
+Parsing documentation for bundler-2.3.13
+Installing ri documentation for bundler-2.3.13
+Done installing documentation for bundler after 0 seconds
+1 gem installed
+RONALDs-MacBook-Pro-2 dev/wordwise ‹workshop› » bundle update --bundler
+Fetching gem metadata from https://rubygems.org/.
+Using rake 13.0.6
+Using bundler 2.3.13
+Using coderay 1.1.3
+Using diff-lcs 1.4.4
+Using method_source 1.0.0
+Using mini_portile2 2.8.0
+Using racc 1.6.0
+Using nokogiri 1.13.6 (x86_64-darwin)
+Using pry 0.14.1
+Using require_all 3.0.0
+Using rspec-support 3.10.2
+Using rspec-core 3.10.1
+Using rspec-expectations 3.10.1
+Using rspec-mocks 3.10.2
+Using rspec 3.10.0
+Using wordwise 1.0.3 from source at `.`
+Bundle updated!
+```
