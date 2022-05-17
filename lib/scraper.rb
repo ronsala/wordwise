@@ -2,11 +2,11 @@
 # definitions.
 class Wordwise::Scraper
 
-  BASEPATH = 'https://en.oxforddictionaries.com'
+  BASEPATH = 'https://www.lexico.com'
 
   # Scrapes page with list of word lists.
   def self.scrape_word_lists
-    html = Nokogiri::HTML(open(BASEPATH + '/explore/word-lists'))
+    html = Nokogiri::HTML(URI.open(BASEPATH + '/explore/word-lists'))
     @list_urls, lists = [], []
 
     # Populates arrays of word list names and urls.
@@ -25,7 +25,7 @@ class Wordwise::Scraper
   # Scrapes a page with a word list.
   def self.scrape_word_list(page_idx)
     
-    doc = Nokogiri::HTML(open(@list_urls[page_idx]))
+    doc = Nokogiri::HTML(URI.open(@list_urls[page_idx]))
     @words_defs = {}
 
     # Creates hash of word-definition pairs.
@@ -50,7 +50,7 @@ class Wordwise::Scraper
     # and put in another array.
     question_words.each_index do |i|
       word_urls << "#{BASEPATH}/definition/#{question_words[i]}"
-      docs << Nokogiri::HTML(open(word_urls[i]))
+      docs << Nokogiri::HTML(URI.open(word_urls[i]))
     end
 
     # Sets variable for word origin.

@@ -104,3 +104,13 @@ Tried getting CircleCI to work but getting `config.yml is not valid`. Looks like
 Went to [https://docs.docker.com/get-started/overview/](https://docs.docker.com/get-started/overview/) and am following instructions.
 
 Trying to set up Docker. Will do a pull request with this added sentence to test.
+
+## 20220517
+
+Switched to new date format for this log.
+
+Pulled in a PR from Dependabot concerning a security vulnerability with nokogiri.
+
+Changed the BASEURL to the new lexico domain, eliminating the need for a redirect.
+
+Added `URI.` before each call to `open` when scraping, eliminating `No such file or directory @ rb_sysopen` errors.
